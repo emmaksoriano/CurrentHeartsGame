@@ -49,18 +49,18 @@ public class HeartsGameState {
      * Sets players to
      */
     public void setPlayers(){
-        int i;
-        players[0] = new HeartsHumanPlayer(userName);
-        for(i = 1; i <= 3; i++){
-            if(difficulty == 0){
-                EasyAI newAI = new EasyAI("Temp Easy AI " + i);
-                players[i] = newAI;
-            }
-            else{
-                HardAI newAI = new HardAI("Temp Hard AI " + i);
-                players[i] = newAI;
-            }
-        }
+//        int i;
+//        players[0] = new HeartsHumanPlayer(userName);
+//        for(i = 1; i <= 3; i++){
+//            if(difficulty == 0){
+//                EasyAI newAI = new EasyAI("Temp Easy AI " + i);
+//                players[i] = newAI;
+//            }
+//            else{
+//                HardAI newAI = new HardAI("Temp Hard AI " + i);
+//                players[i] = newAI;
+//            }
+//        }
     }
 
     /**
@@ -137,12 +137,12 @@ public class HeartsGameState {
     }
 
     public void Deal(){
-        deck.shuffle();
-        Card[][] hands = deck.dealHand();
-        players[0].hand = new ArrayList<>(Arrays.asList(hands[0]));
-        players[1].hand = new ArrayList<>(Arrays.asList(hands[1]));
-        players[2].hand = new ArrayList<>(Arrays.asList(hands[2]));
-        players[3].hand = new ArrayList<>(Arrays.asList(hands[3]));
+//        deck.shuffle();
+//        Card[][] hands = deck.dealHand();
+//        players[0].hand = new ArrayList<>(Arrays.asList(hands[0]));
+//        players[1].hand = new ArrayList<>(Arrays.asList(hands[1]));
+//        players[2].hand = new ArrayList<>(Arrays.asList(hands[2]));
+//        players[3].hand = new ArrayList<>(Arrays.asList(hands[3]));
 
 
     }

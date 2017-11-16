@@ -32,16 +32,16 @@ public class CardDeck {
      * Shuffles the deck
      */
     public void shuffle(){
-        int i, ranNum;
-        ArrayList<Card> tempList = new ArrayList<>(Arrays.asList(deck));
-        Card[] tempDeck = new Card[52];
-
-        for (i = 0; i < 52; i++){
-            ranNum =(int)(Math.random()*(tempList.size()-1));
-            tempDeck[i] = tempList.get(ranNum);
-            tempList.remove(ranNum);
-        }
-        deck = tempDeck;
+//        int i, ranNum;
+//        ArrayList<Card> tempList = new ArrayList<>(Arrays.asList(deck));
+//        Card[] tempDeck = new Card[52];
+//
+//        for (i = 0; i < 52; i++){
+//            ranNum =(int)(Math.random()*(tempList.size()-1));
+//            tempDeck[i] = tempList.get(ranNum);
+//            tempList.remove(ranNum);
+//        }
+//        deck = tempDeck;
     }
 
     /**
@@ -75,35 +75,36 @@ public class CardDeck {
      * @return
      */
     public Card[] sortCards(Card[] cards){
-        // sorts cards based on suit and
-        int i, j;
-        int indexCounter = 0;
-        int count = 0;
-        Card[] rtrnHand = new Card[cards.length];
-        ArrayList<Card> cardsToSort = new ArrayList<>();
-
-        if(cards != null) {
-            for (i = 0; i < 4; i++) {
-                cardsToSort = new ArrayList<>();
-                for (j = 0; j < cards.length - 1; j++) {
-                    if(cards[i] != null) {
-                        if (cards[j].suitValueIndex == i) {
-                            cardsToSort.add(cards[j]);
-                            count++;
-                        }
-                    }
-                }
-                insertionSort(cardsToSort);
-                for(Card C : cardsToSort){
-                    rtrnHand[indexCounter] = C;
-                    indexCounter++;
-                }
-                if(indexCounter >= cards.length){
-                    break;
-                }
-            }
-        }
-        return rtrnHand;
+//        // sorts cards based on suit and
+//        int i, j;
+//        int indexCounter = 0;
+//        int count = 0;
+//        Card[] rtrnHand = new Card[cards.length];
+//        ArrayList<Card> cardsToSort = new ArrayList<>();
+//
+//        if(cards != null) {
+//            for (i = 0; i < 4; i++) {
+//                cardsToSort = new ArrayList<>();
+//                for (j = 0; j < cards.length - 1; j++) {
+//                    if(cards[i] != null) {
+//                        if (cards[j].suitValueIndex == i) {
+//                            cardsToSort.add(cards[j]);
+//                            count++;
+//                        }
+//                    }
+//                }
+//                insertionSort(cardsToSort);
+//                for(Card C : cardsToSort){
+//                    rtrnHand[indexCounter] = C;
+//                    indexCounter++;
+//                }
+//                if(indexCounter >= cards.length){
+//                    break;
+//                }
+//            }
+//        }
+//        return rtrnHand;
+        return null;
     }
 
     /**
@@ -137,37 +138,38 @@ public class CardDeck {
      */
     public ArrayList<Card> quickSort(ArrayList<Card> cards){
 
-        // Declare Variables
-        ArrayList<Card> rtnCards = new ArrayList<>();
-        ArrayList<Card> greater = new ArrayList<>();
-        ArrayList<Card> less = new ArrayList<>();
-        Card pivotCard;
-        int pIndex;
-
-        if(cards != null){
-            if(cards.size() == 1){
-                return cards;
-            }
-            else{
-
-                pIndex = cards.size()/2;
-                pivotCard = cards.get(pIndex);
-                for(Card c : cards){
-                    if(!(c.equals(pivotCard))){
-                        if(c.faceValue > pivotCard.faceValue){
-                            greater.add(c);
-                        }
-                        else{
-                            less.add(c);
-                        }
-                    }
-                }
-
-                rtnCards.addAll(quickSort(greater));
-                rtnCards.add(pivotCard);
-                rtnCards.addAll(quickSort(less));
-            }
-        }
-        return rtnCards;
+//        // Declare Variables
+//        ArrayList<Card> rtnCards = new ArrayList<>();
+//        ArrayList<Card> greater = new ArrayList<>();
+//        ArrayList<Card> less = new ArrayList<>();
+//        Card pivotCard;
+//        int pIndex;
+//
+//        if(cards != null){
+//            if(cards.size() == 1){
+//                return cards;
+//            }
+//            else{
+//
+//                pIndex = cards.size()/2;
+//                pivotCard = cards.get(pIndex);
+//                for(Card c : cards){
+//                    if(!(c.equals(pivotCard))){
+//                        if(c.faceValue > pivotCard.faceValue){
+//                            greater.add(c);
+//                        }
+//                        else{
+//                            less.add(c);
+//                        }
+//                    }
+//                }
+//
+//                rtnCards.addAll(quickSort(greater));
+//                rtnCards.add(pivotCard);
+//                rtnCards.addAll(quickSort(less));
+//            }
+//        }
+//        return rtnCards;
+        return null;
     }
 }

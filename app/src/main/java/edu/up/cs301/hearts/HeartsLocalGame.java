@@ -12,6 +12,8 @@ import edu.up.cs301.game.actionMsg.GameAction;
 public class HeartsLocalGame extends LocalGame {
     HeartsGameState currentGame;
 
+    private final static int WIN_TARGET = 100;
+
     //constructor
     public HeartsLocalGame(){
 

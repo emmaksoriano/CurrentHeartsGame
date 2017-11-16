@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class HeartsPlayer {
 
-    ArrayList<Card> hand = new ArrayList<>();
+    ArrayList<Card> hand ;//= new ArrayList<>();
     Card[] collection;
     Card[] myPass = new Card[3];
     boolean myTurn = false;
