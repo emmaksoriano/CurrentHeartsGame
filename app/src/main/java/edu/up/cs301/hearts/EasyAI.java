@@ -4,7 +4,7 @@ import edu.up.cs301.game.GameComputerPlayer;
 import edu.up.cs301.game.infoMsg.GameInfo;
 
 /**
- * Created by emmasoriano on 11/6/17.
+ * Updated by S. Seydlitz on 11/17/17
  */
 
 public class EasyAI extends GameComputerPlayer {
