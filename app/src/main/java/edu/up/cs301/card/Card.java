@@ -18,7 +18,7 @@ import android.graphics.RectF;
  * http://www.pdclipart.org.
  * 
  * In order to display the card-images on the android you need to call the
- *   Card.initImages(currentActivity)
+ *   HeartsCard.initImages(currentActivity)
  * method during initialization; the 52 image files need to be placed in the
  * res/drawable-hdpi project area.
  * 
@@ -56,7 +56,7 @@ public class Card implements Serializable {
 	}
 
     /**
-     * Creates a Card from a String.  (Can be used instead of the
+     * Creates a HeartsCard from a String.  (Can be used instead of the
      * constructor.)
      *
      * @param str
@@ -67,7 +67,7 @@ public class Card implements Serializable {
      *		by its digit.  The letters 'T', 'J', 'Q', 'K' and 'A', represent
      *		the ranks Ten, Jack, Queen, King and Ace, respectively.
      * @return
-     * 		A Card object that corresponds to the 'str' string. Returns
+     * 		A HeartsCard object that corresponds to the 'str' string. Returns
      *		null if 'str' has improper format.
      */
     public static Card fromString(String str) {
@@ -89,7 +89,7 @@ public class Card implements Serializable {
     }
 
     /**
-     * Produces a textual description of a Card.
+     * Produces a textual description of a HeartsCard.
      *
      * @return
 	 *		A string such as "Jack of Spades", which describes the card.
@@ -99,7 +99,7 @@ public class Card implements Serializable {
     }
 
 	/**
-	 * Tells whether object are equal -- in other words that they are both Card
+	 * Tells whether object are equal -- in other words that they are both HeartsCard
 	 * objects that represent the same card.
 	 *
 	 * @return
@@ -114,7 +114,7 @@ public class Card implements Serializable {
 	}
 
 	/**
-	 * Tells whether object are equal -- in other words that they are both Card
+	 * Tells whether object are equal -- in other words that they are both HeartsCard
 	 * objects that represent the same card.
 	 *
 	 * @return

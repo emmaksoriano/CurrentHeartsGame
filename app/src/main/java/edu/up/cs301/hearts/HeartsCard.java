@@ -4,7 +4,7 @@ package edu.up.cs301.hearts;
  * Created by emmasoriano on 11/6/17.
  */
 
-public class Card {
+public class HeartsCard {
 
     public int faceValue;
     public int suitValueIndex;
@@ -15,11 +15,11 @@ public class Card {
             "Eight", "Nine", "Ten", "Jack", "Queen","King","Ace"};
 
     /**
-     * Card
+     * HeartsCard
      * @param face
      * @param suit
      */
-    public Card(int face, int suit){
+    public HeartsCard(int face, int suit){
         faceValue = face;
         suitValueIndex = suit;
         suitValue = suitValues[suit];

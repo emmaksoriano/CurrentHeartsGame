@@ -1,5 +1,7 @@
 package edu.up.cs301.hearts;
 
+import edu.up.cs301.card.Card;
+
 /**
  * Created by emmasoriano on 10/19/17.
  */

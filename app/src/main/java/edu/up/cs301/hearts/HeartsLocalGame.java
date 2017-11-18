@@ -1,5 +1,8 @@
 package edu.up.cs301.hearts;
 
+import edu.up.cs301.card.Card;
+import edu.up.cs301.card.Rank;
+import edu.up.cs301.card.Suit;
 import edu.up.cs301.game.GamePlayer;
 import edu.up.cs301.game.LocalGame;
 import edu.up.cs301.game.actionMsg.GameAction;
@@ -30,13 +33,13 @@ public class HeartsLocalGame extends LocalGame {
         boolean valid = false;
 
         //check if they played a card of the same suit as first card played,
-        if(card.getSuitValue().equals(currentGame.table.cardsPlayed[0].getSuitValue())){
+        if(card.getSuit().equals(currentGame.table.cardsPlayed[0].getSuit())){
             valid = true;
         }
         // if not, check if they have a card of that suit,
         else{
            for (Card c : currentGame.currentPlayer.hand){
-               if(c.getSuitValue().equals(currentGame.table.cardsPlayed[0].getSuitValue())){
+               if(c.getSuit().equals(currentGame.table.cardsPlayed[0].getSuit())){
                    valid = false;
                }
            }
@@ -76,18 +79,19 @@ public class HeartsLocalGame extends LocalGame {
      */
     public void winRound(){
         //find suit of first card played
-        String suit = currentGame.table.cardsPlayed[0].getSuitValue();
-        int highestFace = currentGame.table.cardsPlayed[0].getCardValue();
-
+        Suit suit = currentGame.table.cardsPlayed[0].getSuit();
+        Rank highestFace = currentGame.table.cardsPlayed[0].getRank();
+/*
         //find highest card of suit played
         for(int i=0; i<currentGame.table.cardsPlayed.length; i++){
             if(currentGame.table.cardsPlayed[i].getCardValue()>highestFace){
              highestFace = currentGame.table.cardsPlayed[i].getCardValue();
             }
         }
+        */
 
         //find which player played that card
-        Card winningCard = new Card(highestFace,currentGame.table.cardsPlayed[0].suitValueIndex);
+        Card winningCard = new Card(highestFace,suit);
         for(HeartsPlayer p: currentGame.players){
             if(p.checkIfCardinHand(winningCard)){
                 p.setIsWinner(true);
@@ -141,11 +145,11 @@ public class HeartsLocalGame extends LocalGame {
 
         for(Card c: currentGame.table.cardsPlayed){
             //add one point each time a heart is on the table
-            if(c.suitValue.equals("Hearts")){
+            if(c.getSuit().equals(Suit.Heart)){
              points++;
             }
             //add 13 points if the queen of spades is on the table
-            else if(c.suitValue.equals("Spades")&& c.faceValue == 10){
+            else if(c.getSuit().equals(Suit.Spade) && c.getRank().equals(Rank.QUEEN)){
                 points=+13;
             }
         }

@@ -2,6 +2,10 @@ package edu.up.cs301.hearts;
 
 import java.util.ArrayList;
 
+import edu.up.cs301.card.Card;
+import edu.up.cs301.card.Rank;
+import edu.up.cs301.card.Suit;
+
 
 /**
  * Created by emmasoriano on 10/19/17.
@@ -9,7 +13,7 @@ import java.util.ArrayList;
 
 public class HeartsPlayer {
 
-    ArrayList<Card> hand ;//= new ArrayList<>();
+    ArrayList<Card> hand ;
     Card[] collection;
     Card[] myPass = new Card[3];
     boolean myTurn = false;
@@ -27,7 +31,7 @@ public class HeartsPlayer {
         name = playerName;
 
         //determines if player has the starting card
-        Card twoOfClubs = new Card(2, 0);
+        Card twoOfClubs = new Card(Rank.TWO, Suit.Club);
         hasTwoOfClubs = checkIfCardinHand(twoOfClubs);
     }
 
