@@ -68,10 +68,13 @@ public class HeartsPlayer {
      * Set hand to given list of cards
      * @param initHand - shouldn't be more then
      */
-    public void setHand(Card[] initHand){
+    public void setHand(CardDeck initHand){
         int i;
-        for (i = 0; i < initHand.length; i++){
-            hand.add(initHand[i]);
+        Card c;
+        for (i = 0; i < initHand.size(); i++){
+            c = initHand.peekAtTopCard();
+            hand.add(c);
+            initHand.removeTopCard();
         }
         collection= (Card[]) hand.toArray();
     }
@@ -88,15 +91,16 @@ public class HeartsPlayer {
         myTurn = initMyTurn;
     }
 
-    public void threeCardPass(Card[] pass, HeartsPlayer p){
+    public void threeCardPass(CardDeck pass, HeartsPlayer p){
         //pass cards to appropriate player
         p.setHand(pass);
-
+        CardDeck copyPass = pass;
         //remove cards passed to another player from hand
         for(Card c: hand){
-            for(int i=0; i<pass.length; i++){
-                if(c.equals(pass[i])){
-                    hand.remove(pass[i]);
+            for(int i=0; i<pass.size(); i++){
+                if(c.equals(copyPass.peekAtTopCard())){
+                    hand.remove(copyPass.peekAtTopCard());
+                    copyPass.removeTopCard();
                 }
             }
         }

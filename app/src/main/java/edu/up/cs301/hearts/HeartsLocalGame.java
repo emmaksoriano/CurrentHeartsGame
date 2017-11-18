@@ -1,5 +1,7 @@
 package edu.up.cs301.hearts;
 
+import android.util.Log;
+
 import edu.up.cs301.card.Card;
 import edu.up.cs301.card.Rank;
 import edu.up.cs301.card.Suit;
@@ -17,9 +19,13 @@ public class HeartsLocalGame extends LocalGame {
 
     private final static int WIN_TARGET = 100;
 
-    //constructor
+    /**
+     * Constructor for the HeartsLocalGame.
+     */
     public HeartsLocalGame(){
-
+        Log.i("HeartsLocalGame", "creating game");
+        // create the state for the beginning of the game
+        currentGame = new HeartsGameState(1,"human");
 
     }
 

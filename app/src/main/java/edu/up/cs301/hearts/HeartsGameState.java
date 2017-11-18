@@ -4,11 +4,16 @@ package edu.up.cs301.hearts;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import edu.up.cs301.card.Card;
+import edu.up.cs301.slapjack.Deck;
+
 /**
  * Created by emmasoriano on 10/23/17.
  */
 
 public class HeartsGameState {
+
+    private static final long serialVersionUID = -8269749892027578797L;
 
     // Declare Instance Variables
     public String userName;
@@ -29,7 +34,7 @@ public class HeartsGameState {
      * @param user
      */
     public HeartsGameState(int d, String user){
-
+        //initialize variables
         difficulty = d;
         userName = user;
         setPlayers();
@@ -42,27 +47,52 @@ public class HeartsGameState {
         currentSuit = 1;
         round = 0;
         table = new Table();
+        //create a deck of cards
         deck = new CardDeck();
     }
+
+
+
 
     /**
      * Sets players to
      */
     public void setPlayers(){
-//        int i;
-//        players[0] = new HeartsHumanPlayer(userName);
-//        for(i = 1; i <= 3; i++){
-//            if(difficulty == 0){
-//                EasyAI newAI = new EasyAI("Temp Easy AI " + i);
-//                players[i] = newAI;
-//            }
-//            else{
-//                HardAI newAI = new HardAI("Temp Hard AI " + i);
-//                players[i] = newAI;
-//            }
-//        }
+        int i;
+        players[0] = new HeartsHumanPlayer(userName);
+        for(i = 1; i <= 3; i++){
+            if(difficulty == 0){
+                EasyAI newAI = new EasyAI("Temp Easy AI " + i);
+                players[i] = newAI;
+            }
+            else{
+                HardAI newAI = new HardAI("Temp Hard AI " + i);
+                players[i] = newAI;
+            }
+        }
     }
 
+    /**
+     * deals the players hands
+     */
+    public void dealHands(){
+        CardDeck[] hand = new CardDeck[4];
+        int counter=0;
+        deck.shuffle();
+        CardDeck copyDeck = deck;
+        for(int i= 0; i<deck.size();i++){
+            if(i%13==0 && i!=0){
+                counter++;
+            }
+            copyDeck.moveTopCardTo(hand[counter]);
+        }
+
+        for(int j = 0; j<players.length; j++){
+            players[j].setHand(hand[j]);
+        }
+
+    }
+//determine who starts
     /**
      * set a given player for who's turn it is
      * @param player
@@ -135,9 +165,6 @@ public class HeartsGameState {
     public int getRound(){
         return round;
     }
-
-
-
 
 
 }

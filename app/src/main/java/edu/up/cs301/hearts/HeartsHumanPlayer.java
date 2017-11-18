@@ -9,6 +9,8 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
+import java.util.ArrayList;
+
 import edu.up.cs301.animation.AnimationSurface;
 import edu.up.cs301.animation.Animator;
 import edu.up.cs301.card.*;
@@ -37,6 +39,18 @@ import edu.up.cs301.slapjack.SJState;
  */
 public class HeartsHumanPlayer extends GameHumanPlayer implements Animator {
 
+    //instance variables added from HeartsPlayer class
+    ArrayList<Card> hand ;
+    Card[] collection;
+    Card[] myPass = new Card[3];
+    boolean myTurn = false;
+    boolean isWinner = false;
+    boolean hasTwoOfClubs = false;
+    int score = 0;
+    String name;
+
+
+
 
     // sizes and locations of card decks and cards, expressed as percentages
     // of the screen height and width
@@ -47,7 +61,7 @@ public class HeartsHumanPlayer extends GameHumanPlayer implements Animator {
     private final static float VERTICAL_BORDER_PERCENT = 4; // width of top/bottom borders
 
     // our game state
-    protected SJState state;
+    protected HeartsGameState state;
 
     // our activity
     private Activity myActivity;
@@ -65,7 +79,11 @@ public class HeartsHumanPlayer extends GameHumanPlayer implements Animator {
      * 		the player's name
      */
     public HeartsHumanPlayer(String name){
-     super(name);
+        super(name);
+
+        //determines if player has the starting card
+        Card twoOfClubs = new Card(Rank.TWO, Suit.Club);
+        hasTwoOfClubs= checkIfCardinHand(twoOfClubs);
     }
 
     /**
@@ -76,12 +94,12 @@ public class HeartsHumanPlayer extends GameHumanPlayer implements Animator {
      */
     @Override
     public void receiveInfo(GameInfo info) {
-        Log.i("SJComputerPlayer", "receiving updated state ("+info.getClass()+")");
+        Log.i("HeartsComputerPlayer", "receiving updated state ("+info.getClass()+")");
         if (info instanceof IllegalMoveInfo || info instanceof NotYourTurnInfo) {
             // if we had an out-of-turn or illegal move, flash the screen
             surface.flash(Color.RED, 50);
         }
-        else if (!(info instanceof SJState)) {
+        else if (!(info instanceof HeartsGameState)) {
             // otherwise, if it's not a game-state message, ignore
             return;
         }
@@ -89,7 +107,7 @@ public class HeartsHumanPlayer extends GameHumanPlayer implements Animator {
             // it's a game-state object: update the state. Since we have an animation
             // going, there is no need to explicitly display anything. That will happen
             // at the next animation-tick, which should occur within 1/20 of a second
-            this.state = (SJState)info;
+            this.state = (HeartsGameState)info;
             Log.i("human player", "receiving");
         }
     }
@@ -107,7 +125,7 @@ public class HeartsHumanPlayer extends GameHumanPlayer implements Animator {
         myActivity = activity;
 
         // Load the layout resource for the new configuration
-        activity.setContentView(R.layout.sj_human_player);
+        activity.setContentView(R.layout.hearts_human_player);
 
         // link the animator (this object) to the animation surface
         surface = (AnimationSurface) myActivity
@@ -399,5 +417,84 @@ public class HeartsHumanPlayer extends GameHumanPlayer implements Animator {
 
         // create/return the new rectangle
         return new RectF(left, top, right, bottom);
+    }
+
+
+
+//Added methods from HeartsPlayer class
+
+    public Card[] getMyPass(){
+        return myPass;
+    }
+
+
+    public Card[] getHand(){
+        return (Card[]) hand.toArray();
+    }
+
+    public String getName(){
+        return name;
+    }
+
+    public int getScore(){
+        return score;
+    }
+
+    public boolean isMyTurn(){
+        return myTurn;
+    }
+
+    public void setMyPass(Card[] cards){
+        myPass = cards;
+    }
+    public void setIsWinner(boolean initWinner){
+        isWinner= initWinner;
+    }
+
+    /**
+     * Set hand to given list of cards
+     * @param initHand - shouldn't be more then
+     */
+    public void setHand(Card[] initHand){
+        int i;
+        for (i = 0; i < initHand.length; i++){
+            hand.add(initHand[i]);
+        }
+        collection= (Card[]) hand.toArray();
+    }
+
+    public void setName(String initName){
+        name = initName;
+    }
+
+    public void setScore(int initScore){
+        score = score + initScore;
+    }
+
+    public void setMyTurn(boolean initMyTurn){
+        myTurn = initMyTurn;
+    }
+
+    public void threeCardPass(Card[] pass, HeartsPlayer p){
+        //pass cards to appropriate player
+        p.setHand(pass);
+
+        //remove cards passed to another player from hand
+        for(Card c: hand){
+            for(int i=0; i<pass.length; i++){
+                if(c.equals(pass[i])){
+                    hand.remove(pass[i]);
+                }
+            }
+        }
+    }
+
+    public boolean checkIfCardinHand(Card card){
+        for(Card c: hand){
+            if(c.equals(card)){
+                return true;
+            }
+        }
+        return false;
     }
 }

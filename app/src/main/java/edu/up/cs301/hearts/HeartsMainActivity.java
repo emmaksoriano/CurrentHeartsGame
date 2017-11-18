@@ -20,9 +20,9 @@ import android.graphics.Color;
  */
 public class HeartsMainActivity extends GameMainActivity {
 
-    public static final int PORT_NUMBER = 4752;
+    public static final int PORT_NUMBER = 7752;
 
-    /** a slapjack game for two players. The default is human vs. computer */
+    /** a hearts game for two players. The default is human vs. computer */
     @Override
     public GameConfig createDefaultConfig() {
 
@@ -49,12 +49,15 @@ public class HeartsMainActivity extends GameMainActivity {
             }
         });
 
-        // Create a game configuration class for SlapJack
-        GameConfig defaultConfig = new GameConfig(playerTypes, 2, 2, "SlapJack", PORT_NUMBER);
+        // Create a game configuration class for Hearts
+        GameConfig defaultConfig = new GameConfig(playerTypes, 4, 4, "Hearts", PORT_NUMBER);
 
         // Add the default players
         defaultConfig.addPlayer("Human", 0);
-        defaultConfig.addPlayer("Computer", 2);
+        defaultConfig.addPlayer("Computer1", 2);
+        defaultConfig.addPlayer("Computer2", 2);
+        defaultConfig.addPlayer("Computer3", 2);
+
 
         // Set the initial information for the remote player
         defaultConfig.setRemoteData("Guest", "", 1);
