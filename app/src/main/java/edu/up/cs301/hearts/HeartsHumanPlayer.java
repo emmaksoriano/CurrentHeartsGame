@@ -21,6 +21,7 @@ import edu.up.cs301.game.R;
 import edu.up.cs301.game.infoMsg.GameInfo;
 import edu.up.cs301.game.infoMsg.IllegalMoveInfo;
 import edu.up.cs301.game.infoMsg.NotYourTurnInfo;
+import edu.up.cs301.slapjack.Deck;
 import edu.up.cs301.slapjack.SJPlayAction;
 import edu.up.cs301.slapjack.SJSlapAction;
 import edu.up.cs301.slapjack.SJState;
@@ -50,6 +51,7 @@ public class HeartsHumanPlayer extends GameHumanPlayer implements Animator {
     String name;
 
 
+    private  RectF [] cardLocation;
 
 
     // sizes and locations of card decks and cards, expressed as percentages
@@ -125,7 +127,7 @@ public class HeartsHumanPlayer extends GameHumanPlayer implements Animator {
         myActivity = activity;
 
         // Load the layout resource for the new configuration
-        activity.setContentView(R.layout.hearts_human_player);
+        activity.setContentView(R.layout.sj_human_player);// change to hearts
 
         // link the animator (this object) to the animation surface
         surface = (AnimationSurface) myActivity
@@ -184,6 +186,20 @@ public class HeartsHumanPlayer extends GameHumanPlayer implements Animator {
         return false;
     }
 
+
+    public void addCards(RectF midTopLocation){
+
+
+        for (int n=0; n<=13; n++) {
+
+            if (cardLocation[n].contains(midTopLocation)) {
+
+                cardLocation[n] = midTopLocation;
+                System.out.println("added mid top loc to array  " + midTopLocation);
+            }
+        }
+    }
+
     /**
      * callback-method: we have gotten an animation "tick"; redraw the screen image:
      * - the middle deck, with the top card face-up, others face-down
@@ -194,48 +210,116 @@ public class HeartsHumanPlayer extends GameHumanPlayer implements Animator {
      * 		the canvas on which we are to draw
      */
     public void tick(Canvas g) {
-
         // ignore if we have not yet received the game state
         if (state == null) return;
 
-        // get the height and width of the animation surface
-        int height = surface.getHeight();
-        int width = surface.getWidth();
+        if (cardLocation==null) {
 
-        // draw the middle card-pile
-        edu.up.cs301.card.Card c = state.getDeck(2).peekAtTopCard(); // top card in pile
-        if (c != null) {
-            // if middle card is not empty, draw a set of N card-backs
-            // behind the middle card, so that the user can see the size of
-            // the pile
-            RectF midTopLocation = middlePileTopCardLocation();
-            drawCardBacks(g, midTopLocation,
-                    0.0025f*width, -0.01f*height, state.getDeck(2).size());
-            // draw the top card, face-up
-            drawCard(g, midTopLocation, c);
+            cardLocation = new RectF[14];
+
+            System.out.println("touch squares havent been initalized  ");
+
+            // get the height and width of the animation surface
+            int height = surface.getHeight();
+            int width = surface.getWidth();
+
+
+/***********************************************************************/
+
+
+
+            int count = 0;
+            for (int row = 1; row < 8; row++) {
+                for (int col = 1; col < 3; col++) {
+
+                    float rectRight = 210;
+                    float rectTop = 1000;
+                    float rectBottom = 1300;
+                    float rectLeft = 60;
+
+                    rectLeft = rectLeft + ((row - 1) * 200);
+                    rectRight = rectRight + ((row - 1) * 200);
+                    rectTop = rectTop + ((col - 1) * 325);
+                    rectBottom = rectBottom + ((col - 1) * 325);
+
+                    cardLocation[count] = new RectF(rectLeft, rectTop, rectRight, rectBottom);
+                    //cardLocation [count] =midTopLocation;
+                    count++;
+                    //cardLocation[n] new RectF()
+
+                    //addCards(midTopLocation);
+
+                    //make an array for cards that works for on touch to determine which card si being clicked
+
+
+                    //drawCard(g, cardLocation[count], myDeck.get(((col - 1) * 7) + row - 1));
+                }
+            }
+        }
+        // draw the First AI's played card
+
+        float AI1rectLeft = 250;
+        float AI1rectRight = 400;
+        float AI1rectTop = 200;
+        float AI1rectBottom = 400;
+
+
+        Card c = state.getDeck(0).peekAtPlayerCard();// currently one of your own cards
+
+        RectF aI1cardPile = new RectF(AI1rectLeft, AI1rectTop, AI1rectRight, AI1rectBottom);
+        drawCard(g, aI1cardPile, c);
+
+
+        // draw the  second AI's played card
+        float AI2rectLeft = 1050;
+        float AI2rectRight = 1200;
+        float AI2rectTop = 200;
+        float AI2rectBottom = 400;
+
+
+        c = state.getDeck(0).peekAtPlayerCard();// currently one of your own cards
+
+        RectF aI2cardPile = new RectF(AI2rectLeft, AI2rectTop, AI2rectRight, AI2rectBottom);
+        drawCard(g, aI2cardPile, c);
+
+
+        //Draw the card the human played
+
+
+        float HrectLeft = 650;
+        float HrectRight = 800;
+        float HrectTop = 500;
+        float HrectBottom = 700;
+
+
+        c = state.getDeck(0).peekAtPlayerCard();// currently one of your own cards
+
+        RectF HcardPile = new RectF(HrectLeft, HrectTop, HrectRight, HrectBottom);
+        drawCard(g, HcardPile, c);
+
+        // draw the third AI's played card
+
+        float AI3rectLeft = 650;
+        float AI3rectRight = 800;
+        float AI3rectTop = 100;
+        float AI3rectBottom = 300;
+
+
+        c = state.getDeck(0).peekAtPlayerCard();// currently one of your own cards
+
+        RectF aI3cardPile = new RectF(AI3rectLeft, AI3rectTop, AI3rectRight, AI3rectBottom);
+        drawCard(g, aI3cardPile, c);
+
+		\
+
+        Deck myDeck = state.getDeck(0);
+
+        for(int i=0; i<Math.min(13,myDeck.size());i++) {
+            //Log.i(" drawing card ",""+i);
+            drawCard(g, cardLocation[i], myDeck.get(i));
+            //Log.i(" finished card draw ",""+i);
         }
 
-        // draw the opponent's cards, face down
-        RectF oppTopLocation = opponentTopCardLocation(); // drawing size/location
-        drawCardBacks(g, oppTopLocation,
-                0.0025f*width, -0.01f*height, state.getDeck(1-this.playerNum).size());
-
-        // draw my cards, face down
-        RectF thisTopLocation = thisPlayerTopCardLocation(); // drawing size/location
-        drawCardBacks(g, thisTopLocation,
-                0.0025f*width, -0.01f*height, state.getDeck(this.playerNum).size());
-
-        // draw a red bar to denote which player is to play (flip) a card
-        RectF currentPlayerRect =
-                state.toPlay() == this.playerNum ? thisTopLocation : oppTopLocation;
-        RectF turnIndicator =
-                new RectF(currentPlayerRect.left,
-                        currentPlayerRect.bottom,
-                        currentPlayerRect.right,
-                        height);
-        Paint paint = new Paint();
-        paint.setColor(Color.RED);
-        g.drawRect(turnIndicator, paint);
     }
 
     /**

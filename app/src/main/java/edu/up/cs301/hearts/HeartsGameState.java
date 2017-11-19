@@ -5,13 +5,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import edu.up.cs301.card.Card;
+import edu.up.cs301.game.infoMsg.GameState;
 import edu.up.cs301.slapjack.Deck;
 
 /**
  * Created by emmasoriano on 10/23/17.
  */
 
-public class HeartsGameState {
+public class HeartsGameState extends GameState {
 
     private static final long serialVersionUID = -8269749892027578797L;
 

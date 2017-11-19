@@ -44,7 +44,7 @@ public class Deck implements Serializable {
 			}
 		}
 	}
-	
+
 	/**
 	 * adds one of each card, increasing the size of the deck by 52. Cards are added
 	 * spades first (King to Ace), then similarly with hearts, diamonds and clubs.
@@ -147,7 +147,15 @@ public class Deck implements Serializable {
 			cards.add(c);
 		}
 	}
-	
+
+	public Card get(int i) {
+		// synchronize so that the underlying ArrayList is not accessed
+		// inconsistently
+		synchronized(this.cards) {
+			return cards.get(i);
+		}
+	}
+
 	/**
 	 * @return
 	 * 		the number of cards in the deck
