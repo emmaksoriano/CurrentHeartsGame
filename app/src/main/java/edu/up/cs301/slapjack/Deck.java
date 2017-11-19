@@ -13,6 +13,7 @@ import edu.up.cs301.card.Card;
  *
  */
 public class Deck implements Serializable {
+	int currCard=0;
 
 	// to satisfy Serializable interface
 	private static final long serialVersionUID = 3216223171210121485L;
@@ -205,6 +206,34 @@ public class Deck implements Serializable {
 			if (cards.isEmpty()) return null;
 			return cards.get(cards.size()-1);
 		}
+	}
+
+	public Card peekAtPlayerCard() {
+		//System.out.println("in peekCard ");
+		synchronized (this.cards) {
+			//System.out.println("in synchronized card ");
+			if (cards.isEmpty()) {
+				//System.out.println("deck is empty");
+				return null;
+			}
+
+			else {
+				//System.out.println("values in card array:  " + cards.get(currCard));
+				currCard = 0;
+				for (int i = 0; i <= cards.size(); i++) {
+					//System.out.println("card size:   " + cards.size());
+					//System.out.println("curr card value:  " + cards.get(currCard));
+					if (i<0) currCard=0;
+					else if(i==0||i==1) currCard=0;
+					else {
+						Card curr = cards.get(i);
+						currCard++;
+						return curr;
+					}
+				}
+			}
+		}
+		return cards.get(0);
 	}
 	
 	/**

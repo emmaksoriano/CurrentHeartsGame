@@ -14,6 +14,7 @@ import edu.up.cs301.slapjack.Deck;
 
 public class HeartsGameState extends GameState {
 
+    private  Deck[] piles;
     private static final long serialVersionUID = -8269749892027578797L;
 
     // Declare Instance Variables
@@ -73,6 +74,10 @@ public class HeartsGameState extends GameState {
         }
     }
 
+    public Deck getDeck(int num) {
+        if (num < 0 || num > 2) return null;
+        return piles[num];
+    }
     /**
      * deals the players hands
      */

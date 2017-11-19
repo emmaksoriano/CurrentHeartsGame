@@ -310,7 +310,7 @@ public class HeartsHumanPlayer extends GameHumanPlayer implements Animator {
         RectF aI3cardPile = new RectF(AI3rectLeft, AI3rectTop, AI3rectRight, AI3rectBottom);
         drawCard(g, aI3cardPile, c);
 
-		\
+
 
         Deck myDeck = state.getDeck(0);
 
