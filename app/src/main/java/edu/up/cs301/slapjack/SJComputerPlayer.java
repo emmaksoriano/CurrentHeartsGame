@@ -14,6 +14,9 @@ import edu.up.cs301.game.infoMsg.TimerInfo;
  * @author Steven R. Vegdahl
  * @version July 2013 
  */
+
+
+/*
 public class SJComputerPlayer extends GameComputerPlayer
 {
 	// the minimum reaction time for this player, in milliseconds
@@ -29,6 +32,8 @@ public class SJComputerPlayer extends GameComputerPlayer
      * @param name
      * 		the player's name
      */
+
+/*
     public SJComputerPlayer(String name) {
         // invoke general constructor to create player whose average reaction
     	// time is half a second.
@@ -38,6 +43,8 @@ public class SJComputerPlayer extends GameComputerPlayer
     /*
      * Constructor for the SJComputerPlayer class
      */
+
+/*
     public SJComputerPlayer(String name, double avgReactionTime) {
         // invoke superclass constructor
         super(name);
@@ -51,6 +58,7 @@ public class SJComputerPlayer extends GameComputerPlayer
 	 * Invoked whenever the player's timer has ticked. It is expected
 	 * that this will be overridden in many players.
 	 */
+/*
     @Override
     protected void timerTicked() {
     	// we had seen a Jack, now we have waited the requisite time to slap
@@ -71,6 +79,7 @@ public class SJComputerPlayer extends GameComputerPlayer
      * callback method, called when we receive a message, typicallly from
      * the game
      */
+/*
     @Override
     protected void receiveInfo(GameInfo info) {
     	
@@ -108,4 +117,5 @@ public class SJComputerPlayer extends GameComputerPlayer
         	game.sendAction(new SJPlayAction(this));
     	}
     }
-}
+    */
+//}

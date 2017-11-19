@@ -26,6 +26,8 @@ import edu.up.cs301.slapjack.SJPlayAction;
 import edu.up.cs301.slapjack.SJSlapAction;
 import edu.up.cs301.slapjack.SJState;
 
+import static edu.up.cs301.game.R.drawable.card_2c;
+
 /**
  * Created by emmasoriano on 11/6/17.
  */
@@ -43,7 +45,7 @@ public class HeartsHumanPlayer extends GameHumanPlayer implements Animator {
     //instance variables added from HeartsPlayer class
     CardDeck hand;
     Card[] collection;
-    Card[] myPass = new Card[3];
+    Card[] myPass = new Card[2];
     boolean myTurn = false;
     boolean isWinner = false;
     boolean hasTwoOfClubs = false;
@@ -74,6 +76,14 @@ public class HeartsHumanPlayer extends GameHumanPlayer implements Animator {
     // the background color
     private int backgroundColor;
 
+    public boolean checkIfCardinHand(Card card){
+        for(Card c: hand.cards){
+            if(c.equals(card)){
+                return true;
+            }
+        }
+        return false;
+    }
     /**
      * constructor
      *
@@ -85,7 +95,9 @@ public class HeartsHumanPlayer extends GameHumanPlayer implements Animator {
 
         //determines if player has the starting card
         Card twoOfClubs = new Card(Rank.TWO, Suit.Club);
-        hasTwoOfClubs= checkIfCardinHand(twoOfClubs);
+        if (checkIfCardinHand(twoOfClubs)){
+            hasTwoOfClubs= true;
+        }
     }
 
     /**
@@ -559,23 +571,23 @@ public class HeartsHumanPlayer extends GameHumanPlayer implements Animator {
         myTurn = initMyTurn;
     }
 
-    public void threeCardPass(CardDeck pass, GamePlayer p){
+    public void threeCardPass(CardDeck pass, GamePlayer p) {
         //pass cards to appropriate player
-        for(Card c: pass.cards) {
+        for (Card c : pass.cards) {
             p.hand.cards.add(c);
         }
 
         //remove cards passed to another player from hand
-        for(Card c: hand.cards){
-            for(Card i: pass.cards){
-                if(c.equals(i)){
+        for (Card c : hand.cards) {
+            for (Card i : pass.cards) {
+                if (c.equals(i)) {
                     hand.cards.remove(i);
                 }
             }
         }
     }
 
-    public boolean checkIfCardinHand(Card card){
+        public boolean checkIfCardInHand(Card card){
         for(Card c: hand.cards){
             if(c.equals(card)){
                 return true;
@@ -583,4 +595,8 @@ public class HeartsHumanPlayer extends GameHumanPlayer implements Animator {
         }
         return false;
     }
+
+
+
+
 }

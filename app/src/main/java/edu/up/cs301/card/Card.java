@@ -12,6 +12,7 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
 
+
 /**
  * A playing card in the standard 52-card deck. The images, which have been
  * placed in the res/drawable-hdpi folder in the project, are from

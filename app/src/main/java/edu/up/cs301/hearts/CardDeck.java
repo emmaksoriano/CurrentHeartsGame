@@ -6,6 +6,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import edu.up.cs301.card.Card;
 import edu.up.cs301.card.Suit;
+import edu.up.cs301.card.Card;
 
 
 /**
