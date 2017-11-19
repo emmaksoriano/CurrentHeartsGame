@@ -13,9 +13,9 @@ import edu.up.cs301.card.Suit;
 
 public class HeartsPlayer {
 
-    ArrayList<Card> hand ;
-    Card[] collection;
-    Card[] myPass = new Card[3];
+    ArrayList<HeartsCard> hand ;
+    HeartsCard[] collection;
+    HeartsCard[] myPass = new HeartsCard[3];
     boolean myTurn = false;
     boolean isWinner = false;
     boolean hasTwoOfClubs = false;
@@ -37,13 +37,13 @@ public class HeartsPlayer {
     }
 
 
-    public Card[] getMyPass(){
+    public HeartsCard[] getMyPass(){
         return myPass;
     }
 
 
-    public Card[] getHand(){
-        return (Card[]) hand.toArray();
+    public HeartsCard[] getHand(){
+        return (HeartsCard[]) hand.toArray();
     }
 
     public String getName(){
@@ -58,7 +58,7 @@ public class HeartsPlayer {
         return myTurn;
     }
 
-    public void setMyPass(Card[] cards){
+    public void setMyPass(HeartsCard[] cards){
         myPass = cards;
     }
     public void setIsWinner(boolean initWinner){
@@ -71,13 +71,13 @@ public class HeartsPlayer {
      */
     public void setHand(CardDeck initHand){
         int i;
-        Card c;
+        HeartsCard c;
         for (i = 0; i < initHand.size(); i++){
             c = initHand.peekAtTopCard();
             hand.add(c);
             initHand.removeTopCard();
         }
-        collection= (Card[]) hand.toArray();
+        collection= (HeartsCard[]) hand.toArray();
     }
 
     public void setName(String initName){
@@ -97,7 +97,7 @@ public class HeartsPlayer {
         p.setHand(pass);
         CardDeck copyPass = pass;
         //remove cards passed to another player from hand
-        for(Card c: hand){
+        for(HeartsCard c: hand){
             for(int i=0; i<pass.size(); i++){
                 if(c.equals(copyPass.peekAtTopCard())){
                     hand.remove(copyPass.peekAtTopCard());
@@ -108,7 +108,7 @@ public class HeartsPlayer {
     }
 
     public boolean checkIfCardinHand(HeartsCard card){
-        for(Card c: hand){
+        for(HeartsCard c: hand){
             if(c.equals(card)){
                 return true;
             }
@@ -117,7 +117,7 @@ public class HeartsPlayer {
     }
 
     public boolean checkIfFaceInHand(String face){
-        for(Card c: hand){
+        for(HeartsCard c: hand){
             if(hand.contains(face)){
                 return true;
             }

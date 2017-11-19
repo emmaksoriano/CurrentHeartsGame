@@ -23,7 +23,8 @@ public class EasyAI extends HeartsPlayer {
     int spades = 1;
     int diamonds = 2;
     int hearts = 4;
-    String thisGuy; //THIS NEEDS TO BE CHANGED!!! this needs to indicate the "name" of the AI, so AI 1, 2, or 3
+    String thisGuy = this.getName();
+    HeartsCard[] currentHand = thisGuy.getHand();
     HeartsGameState thisTime = new HeartsGameState(0,thisGuy);
     int baseSuit = thisTime.getCurrentSuit();
     boolean heartsPlayed = false;
@@ -56,22 +57,21 @@ public class EasyAI extends HeartsPlayer {
             chosenCard = new HeartsCard(x,z);
         }//our card will be first
 
-        //check and see if a heart card has been played. If not, play a non-heart card. If yes, play any card. If only heart cards are in the player's hand, play any card
+        //check and see if the AI player has a card of the suit that was originally played. If not, play any card
 
-        if(heartsPlayed=true){
-            /////check and see if the player has this card in their hand. if so, play it and erase it from the hand
-            if(checkIfFaceInHand(baseN)==true){
-                chosenCard = new HeartsCard(x, baseSuit);
-            }
-            else{
-                chosenCard = new HeartsCard(x,y);
-            }
-
+        /////check and see if the player has this card in their hand.
+        if(checkIfFaceInHand(baseN)==true){
+            chosenCard = new HeartsCard(x, baseSuit);
         }
+        else{
+            chosenCard = new HeartsCard(x,y);
+        }
+
     }
 
     public HeartsCard playCard() {
         if(checkIfCardinHand(chosenCard)==true){
+            //if they have this card, then take it away from the AI player's hand!
             return chosenCard;
         }
         else{
