@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import edu.up.cs301.card.Card;
 import edu.up.cs301.card.Rank;
 import edu.up.cs301.card.Suit;
+import edu.up.cs301.game.GamePlayer;
 
 
 /**
@@ -43,7 +44,7 @@ public class HeartsPlayer {
 
 
     public Card[] getHand(){
-        return (Card[]) hand.toArray();
+        return (Card[]) hand.cards.toArray();
     }
 
     public String getName(){
@@ -71,7 +72,6 @@ public class HeartsPlayer {
      */
     public void setHand(CardDeck initHand){
         int i;
-        Card c;
         for (Card c: initHand.cards){
             c = initHand.peekAtTopCard();
             hand.add(c);
@@ -92,15 +92,17 @@ public class HeartsPlayer {
         myTurn = initMyTurn;
     }
 
-    public void threeCardPass(CardDeck pass, HeartsPlayer p){
+    public void threeCardPass(CardDeck pass, GamePlayer p){
         //pass cards to appropriate player
-        p.setHand(pass);
+        for(Card c: pass.cards){
+            p.hand.cards.add(c);
+        }
         CardDeck copyPass = pass;
         //remove cards passed to another player from hand
-        for(HeartsCard c: hand){
+        for(Card c: hand.cards){
             for(int i=0; i<pass.size(); i++){
                 if(c.equals(copyPass.peekAtTopCard())){
-                    hand.remove(copyPass.peekAtTopCard());
+                    hand.cards.remove(copyPass.peekAtTopCard());
                     copyPass.removeTopCard();
                 }
             }

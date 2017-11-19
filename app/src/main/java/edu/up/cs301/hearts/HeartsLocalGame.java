@@ -35,7 +35,6 @@ public class HeartsLocalGame extends LocalGame {
      * validCard method checks if the card played by currentPlayer is legal
      *
      */
-    /*
     public boolean validCard(Card card){
 
         boolean valid = false;
@@ -46,7 +45,7 @@ public class HeartsLocalGame extends LocalGame {
         }
         // if not, check if they have a card of that suit,
         else{
-           for (Card c : currentGame.toPlay.hand){
+           for (Card c : currentGame.players[currentGame.toPlay].hand.cards){
                if(c.getSuit().equals(currentGame.table.cardsPlayed[0].getSuit())){
                    valid = false;
                }
@@ -55,40 +54,31 @@ public class HeartsLocalGame extends LocalGame {
 
         return valid;
     }
-    */
 
     /**
      *  validTurn method checks if its legal for a player to play a card
      *
      */
-    public boolean validTurn(HeartsPlayer player){
-        return player.myTurn;
+    public boolean validTurn(GamePlayer player){
+        if(currentGame.players[currentGame.toPlay].equals(player)) {
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     /**
      * checks who's turn it is to play a card
      */
-   /*
-    public HeartsPlayer checkTurn(){
-        HeartsPlayer currentPlayer = null;
-
-        for(int i = 0; i<currentGame.players.length; i++){
-            if(currentGame.players[i].myTurn == true){
-                currentPlayer = currentGame.players[i];
-            }
-        }
-
-        currentGame.setCurrentPlayer(currentPlayer);
-
-        return currentPlayer;
+    public GamePlayer checkTurn(){
+        return currentGame.players[currentGame.toPlay];
     }
-    */
 
     /**
      *   The winRound method determines which player won the round
      *   and sets their isWinner boolean to true.
      */
-    /*
     public void winRound(){
         //find suit of first card played
         Suit suit = currentGame.table.cardsPlayed[0].getSuit();
@@ -102,11 +92,10 @@ public class HeartsLocalGame extends LocalGame {
         }
         */
 
-    /*
         //find which player played that card
         Card winningCard = new Card(highestFace,suit);
-        for(HeartsPlayer p: currentGame.players){
-            if(p.checkIfCardinHand(winningCard)){
+        for(GamePlayer p: currentGame.players){
+            if(p.checkIfCardInHand(winningCard)){
                 p.setIsWinner(true);
             }
         }
@@ -151,8 +140,8 @@ public class HeartsLocalGame extends LocalGame {
         }
         */
 
-   // }
-/*
+    }
+
     public int calculatePoints(){
         int points = 0;
 
@@ -171,7 +160,6 @@ public class HeartsLocalGame extends LocalGame {
     }
 
 
-
     public void updateScore(){
         int points = calculatePoints();
         for(int i = 0; i<currentGame.players.length; i++){
@@ -181,7 +169,7 @@ public class HeartsLocalGame extends LocalGame {
         }
     }
 
-*/
+
     protected void sendUpdatedStateTo(GamePlayer p) {
 
     }

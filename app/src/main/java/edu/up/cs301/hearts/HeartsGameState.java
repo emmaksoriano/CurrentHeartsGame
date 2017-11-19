@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import edu.up.cs301.card.Card;
+import edu.up.cs301.card.Rank;
+import edu.up.cs301.card.Suit;
 import edu.up.cs301.game.Game;
 import edu.up.cs301.game.GamePlayer;
 import edu.up.cs301.game.infoMsg.GameState;
@@ -28,6 +30,11 @@ import edu.up.cs301.game.infoMsg.GameState;
  * @version July 2013
  */
 public class HeartsGameState extends GameState {
+
+    public GamePlayer[] players = new GamePlayer[4];
+    Table table = new Table();
+
+
     private static final long serialVersionUID = -8269749892027578792L;
 
     ///////////////////////////////////////////////////
@@ -37,7 +44,9 @@ public class HeartsGameState extends GameState {
     // the three piles of cards:
     //  - 0: pile for player 0
     //  - 1: pile for player 1
-    //  - 2: the "up" pile, where the top card
+    //  - 2: pile for player 2
+    //  - 3: pile for player 3
+    //  - 4: the "up" pile, where the top card
     // Note that when players receive the state, all but the top card in all piles
     // are passed as null.
     public Deck[] piles;
@@ -46,13 +55,13 @@ public class HeartsGameState extends GameState {
     public int toPlay;
 
     /**
-     * Constructor for objects of class SJState. Initializes for the beginning of the
+     * Constructor for objects of class HeartsGameState. Initializes for the beginning of the
      * game, with a random player as the first to turn card
      */
     public HeartsGameState() {
         // randomly pick the player who starts
         //toPlay = (int)(2*Math.random());
-        toPlay = 0;
+        toPlay= hasTwoOfClubs();
 
         // initialize the decks as follows:
         // - each player deck (#0 and #1) gets half the cards, randomly
@@ -66,18 +75,24 @@ public class HeartsGameState extends GameState {
         piles[toPlay].add52(); // give all cards to player whose turn it is, in order
         piles[toPlay].shuffle(); // shuffle the cards
         // move cards to opponent, until to piles have ~same size
-        while (piles[toPlay].size() >=
-                piles[1 - toPlay].size() + 1) {
-            piles[toPlay].moveTopCardTo(piles[1 - toPlay]);
-        }
+        int counter = 0;
+        int i=0;
+        do{
+            if(counter==13){
+                counter=0;
+                i++;
+            }
+            piles[toPlay].moveTopCardTo(piles[i]);
+            counter++;
+        }while(counter<=4);
     }
 
     /**
-     * Copy constructor for objects of class SJState. Makes a copy of the given state
+     * Copy constructor for objects of class HeartsGameState. Makes a copy of the given state
      *
      * @param orig the state to be copied
      */
-    public HeartsGameState(edu.up.cs301.slapjack.SJState orig) {
+    public HeartsGameState(edu.up.cs301.hearts.HeartsGameState orig) {
         // set index of player whose turn it is
         toPlay = orig.toPlay;
         // create new deck array, making copy of each deck
@@ -118,6 +133,17 @@ public class HeartsGameState extends GameState {
         toPlay = idx;
     }
 
+    public int hasTwoOfClubs(){
+        Card twoClubs = new Card(Rank.TWO, Suit.Club);
+        int num = 0;
+        for(int i = 0; i<players.length;i++){
+            if(players[i].checkIfCardInHand(twoClubs)){
+                num= i;
+            }
+        }
+        return num;
+    }
+
 }
 
 
@@ -128,12 +154,6 @@ public class HeartsGameState extends GameState {
 
 /*
 public class HeartsGameState extends GameState {
-
-    private  Deck[] piles;
-    // whose turn is it to turn a card?
-    private int toPlay;
-
-    private static final long serialVersionUID = -8269749892027578797L;
 
     // Declare Instance Variables
     public String userName;
@@ -148,27 +168,6 @@ public class HeartsGameState extends GameState {
     public int round;
     Table table;
 
-    public HeartsGameState() {
-        // randomly pick the player who starts
-        //toPlay = (int)(2*Math.random());
-        toPlay = 0;
-
-        // initialize the decks as follows:
-        // - each player deck (#0 and #1) gets half the cards, randomly
-        //   selected
-        // - the middle deck (#2) is empty
-        piles = new Deck[3];
-        piles[0] = new Deck(); // create empty deck
-        piles[1] = new Deck(); // create empty deck
-        piles[2] = new Deck(); // create empty deck
-        piles[toPlay].add52(); // give all cards to player whose turn it is, in order
-        piles[toPlay].shuffle(); // shuffle the cards
-        // move cards to opponent, until to piles have ~same size
-        while (piles[toPlay].size() >=
-                piles[1-toPlay].size()+1) {
-            piles[toPlay].moveTopCardTo(piles[1-toPlay]);
-        }
-    }
 
     /**
      * HeartsGameState Constructor
@@ -197,8 +196,6 @@ public class HeartsGameState extends GameState {
     }
 
 
-
-
     /**
      * Sets players to
      */
@@ -208,20 +205,17 @@ public class HeartsGameState extends GameState {
         players[0] = new HeartsHumanPlayer(userName);
         for(i = 1; i <= 3; i++){
             if(difficulty == 0){
-                EasyAI newAI = new EasyAI("Temp Easy AI " + i);
+                EasyAI newAI = new EasyAI("Easy AI " + i);
                 players[i] = newAI;
             }
             else{
-                HardAI newAI = new HardAI("Temp Hard AI " + i);
+                HardAI newAI = new HardAI("Hard AI " + i);
                 players[i] = newAI;
             }
         }
     }
 
-    public Deck getDeck(int num) {
-        if (num < 0 || num > 2) return null;
-        return piles[num];
-    }
+
     /**
      * deals the players hands
      */
@@ -248,35 +242,8 @@ public class HeartsGameState extends GameState {
      * set a given player for who's turn it is
      * @param player
      */
-/*
-    public void setCurrentPlayer(GamePlayer player){
-        int i;
-        for(i = 0; i < players.length; i++){
-            if(players[i].equals(player)){
-                playerIndex = i;
-            }
-        }
-        currentPlayer = player;
-        setNextPlayer();
-    }
 
-    /**
-     * sets the next player
-     */
 /*
-    public void setNextPlayer(){
-        int i;
-        for(i = 0; i < players.length; i++){
-            if(players[i].equals(currentPlayer)){
-                if(i == 3){
-                    nextPlayer = players[0];
-                }
-                else {
-                    nextPlayer = players[i+1];
-                }
-            }
-        }
-    }
 
     /**
      * set given player's score
@@ -288,32 +255,6 @@ public class HeartsGameState extends GameState {
         //setScore(addScore);
     }
 
-    /**
-     * get current player
-     * @return
-     */
-   /*
-    public GamePlayer getCurrentPlayer(){
-        return currentPlayer;
-    }
-
-    /**
-     * get next player
-     * @return
-     */
-   /*
-    public GamePlayer getNextPlayer(){
-        return nextPlayer;
-    }
-
-    /**
-     * get current player
-     * @return
-     */
-   /*
-    public int getCurrentSuit(){
-        return currentSuit;
-    }
 
     /**
      * get round number
@@ -323,8 +264,6 @@ public class HeartsGameState extends GameState {
     public int getRound(){
         return round;
     }
-
-
 
 }
 */
