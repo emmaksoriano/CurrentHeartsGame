@@ -4,6 +4,7 @@ import edu.up.cs301.card.Card;
 import edu.up.cs301.game.infoMsg.GameInfo;
 import edu.up.cs301.hearts.CardDeck;
 import edu.up.cs301.hearts.HeartsPlayer;
+import edu.up.cs301.hearts.CardDeck;
 
 /**
  * A player who plays a (generic) game. Each class that implements a player for
@@ -15,7 +16,7 @@ import edu.up.cs301.hearts.HeartsPlayer;
  */
 
 public interface GamePlayer {
-	
+	CardDeck hand = new CardDeck();
 	// sets this player as the GUI player (implemented as final in the
 	// major player classes)
 	public abstract void gameSetAsGui(GameMainActivity activity);
