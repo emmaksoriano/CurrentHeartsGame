@@ -9,7 +9,7 @@ import edu.up.cs301.game.infoMsg.GameInfo;
  * Updated by S. Seydlitz on 11/17/17
  */
 
-public class EasyAI extends GameComputerPlayer {
+public class EasyAI extends HeartsPlayer {
 
     public EasyAI(String playerName) {
         super(playerName);
@@ -70,7 +70,7 @@ public class EasyAI extends GameComputerPlayer {
         }
     }
 
-    public void playCard() {
+    public HeartsCard playCard() {
         if(checkIfCardinHand(chosenCard)==true){
             return chosenCard;
         }

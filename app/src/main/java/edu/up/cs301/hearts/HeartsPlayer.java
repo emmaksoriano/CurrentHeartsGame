@@ -31,7 +31,8 @@ public class HeartsPlayer {
         name = playerName;
 
         //determines if player has the starting card
-        Card twoOfClubs = new Card(Rank.TWO, Suit.Club);
+        //Clubs, spades, diamonds, hearts
+        HeartsCard twoOfClubs = new HeartsCard(2, 0);
         hasTwoOfClubs = checkIfCardinHand(twoOfClubs);
     }
 
@@ -106,9 +107,18 @@ public class HeartsPlayer {
         }
     }
 
-    public boolean checkIfCardinHand(Card card){
+    public boolean checkIfCardinHand(HeartsCard card){
         for(Card c: hand){
             if(c.equals(card)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean checkIfFaceInHand(String face){
+        for(Card c: hand){
+            if(hand.contains(face)){
                 return true;
             }
         }
