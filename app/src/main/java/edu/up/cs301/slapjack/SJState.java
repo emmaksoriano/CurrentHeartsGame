@@ -19,6 +19,8 @@ public class SJState extends GameState
     // ************** instance variables ************
     ///////////////////////////////////////////////////
 
+
+
 	// the three piles of cards:
     //  - 0: pile for player 0
     //  - 1: pile for player 1
