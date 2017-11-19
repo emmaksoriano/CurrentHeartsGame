@@ -13,7 +13,7 @@ import edu.up.cs301.card.Suit;
 
 public class HeartsPlayer {
 
-    ArrayList<Card> hand ;
+    CardDeck hand ;
     Card[] collection;
     Card[] myPass = new Card[3];
     boolean myTurn = false;
@@ -71,13 +71,13 @@ public class HeartsPlayer {
      */
     public void setHand(CardDeck initHand){
         int i;
-        HeartsCard c;
-        for (i = 0; i < initHand.size(); i++){
+        Card c;
+        for (Card c: initHand.cards){
             c = initHand.peekAtTopCard();
             hand.add(c);
             initHand.removeTopCard();
         }
-        collection= (Card[]) hand.toArray();
+        collection= (Card[]) hand.cards.toArray();
     }
 
     public void setName(String initName){
@@ -107,8 +107,8 @@ public class HeartsPlayer {
         }
     }
 
-    public boolean checkIfCardinHand(HeartsCard card){
-        for(HeartsCard c: hand){
+    public boolean checkIfCardinHand(Card card){
+        for(Card c: hand.cards){
             if(c.equals(card)){
                 return true;
             }
@@ -116,9 +116,9 @@ public class HeartsPlayer {
         return false;
     }
 
-    public boolean checkIfFaceInHand(String face){
-        for(HeartsCard c: hand){
-            if(hand.contains(face)){
+    public boolean checkIfFaceInHand(Rank face){
+        for(Card c: hand.cards){
+            if(c.getRank().equals(face)){
                 return true;
             }
         }
