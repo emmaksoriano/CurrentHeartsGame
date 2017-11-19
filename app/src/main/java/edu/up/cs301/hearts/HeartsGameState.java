@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import edu.up.cs301.card.Card;
+import edu.up.cs301.game.Game;
+import edu.up.cs301.game.GamePlayer;
 import edu.up.cs301.game.infoMsg.GameState;
 import edu.up.cs301.slapjack.Deck;
 
@@ -19,9 +21,9 @@ public class HeartsGameState extends GameState {
 
     // Declare Instance Variables
     public String userName;
-    public HeartsPlayer[] players = new HeartsPlayer[4];
-    public HeartsPlayer currentPlayer;
-    public HeartsPlayer nextPlayer;
+    public GamePlayer[] players = new GamePlayer[4];
+    public GamePlayer currentPlayer;
+    public GamePlayer nextPlayer;
     public CardDeck deck;
     public int playerIndex;
     public int difficulty;
@@ -103,7 +105,7 @@ public class HeartsGameState extends GameState {
      * set a given player for who's turn it is
      * @param player
      */
-    public void setCurrentPlayer(HeartsPlayer player){
+    public void setCurrentPlayer(GamePlayer player){
         int i;
         for(i = 0; i < players.length; i++){
             if(players[i].equals(player)){
@@ -136,15 +138,15 @@ public class HeartsGameState extends GameState {
      * @param player
      * @param addScore
      */
-    public void setPlayersScore(HeartsPlayer player, int addScore){
-        player.setScore(addScore);
+    public void setPlayersScore(GamePlayer player, int addScore){
+        //setScore(addScore);
     }
 
     /**
      * get current player
      * @return
      */
-    public HeartsPlayer getCurrentPlayer(){
+    public GamePlayer getCurrentPlayer(){
         return currentPlayer;
     }
 
@@ -152,7 +154,7 @@ public class HeartsGameState extends GameState {
      * get next player
      * @return
      */
-    public HeartsPlayer getNextPlayer(){
+    public GamePlayer getNextPlayer(){
         return nextPlayer;
     }
 
@@ -171,6 +173,7 @@ public class HeartsGameState extends GameState {
     public int getRound(){
         return round;
     }
+
 
 
 }

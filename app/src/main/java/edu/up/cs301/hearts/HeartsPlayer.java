@@ -13,9 +13,9 @@ import edu.up.cs301.card.Suit;
 
 public class HeartsPlayer {
 
-    ArrayList<HeartsCard> hand ;
-    HeartsCard[] collection;
-    HeartsCard[] myPass = new HeartsCard[3];
+    ArrayList<Card> hand ;
+    Card[] collection;
+    Card[] myPass = new Card[3];
     boolean myTurn = false;
     boolean isWinner = false;
     boolean hasTwoOfClubs = false;
@@ -32,18 +32,18 @@ public class HeartsPlayer {
 
         //determines if player has the starting card
         //Clubs, spades, diamonds, hearts
-        HeartsCard twoOfClubs = new HeartsCard(2, 0);
+        Card twoOfClubs = new Card(Rank.TWO, Suit.Club);
         hasTwoOfClubs = checkIfCardinHand(twoOfClubs);
     }
 
 
-    public HeartsCard[] getMyPass(){
+    public Card[] getMyPass(){
         return myPass;
     }
 
 
-    public HeartsCard[] getHand(){
-        return (HeartsCard[]) hand.toArray();
+    public Card[] getHand(){
+        return (Card[]) hand.toArray();
     }
 
     public String getName(){
@@ -58,7 +58,7 @@ public class HeartsPlayer {
         return myTurn;
     }
 
-    public void setMyPass(HeartsCard[] cards){
+    public void setMyPass(Card[] cards){
         myPass = cards;
     }
     public void setIsWinner(boolean initWinner){
@@ -77,7 +77,7 @@ public class HeartsPlayer {
             hand.add(c);
             initHand.removeTopCard();
         }
-        collection= (HeartsCard[]) hand.toArray();
+        collection= (Card[]) hand.toArray();
     }
 
     public void setName(String initName){
