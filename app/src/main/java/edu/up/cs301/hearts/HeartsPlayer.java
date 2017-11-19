@@ -31,6 +31,7 @@ public class HeartsPlayer {
         name = playerName;
 
         //determines if player has the starting card
+        //Clubs, spades, diamonds, hearts
         Card twoOfClubs = new Card(Rank.TWO, Suit.Club);
         hasTwoOfClubs = checkIfCardinHand(twoOfClubs);
     }
@@ -70,7 +71,7 @@ public class HeartsPlayer {
      */
     public void setHand(CardDeck initHand){
         int i;
-        Card c;
+        HeartsCard c;
         for (i = 0; i < initHand.size(); i++){
             c = initHand.peekAtTopCard();
             hand.add(c);
@@ -96,7 +97,7 @@ public class HeartsPlayer {
         p.setHand(pass);
         CardDeck copyPass = pass;
         //remove cards passed to another player from hand
-        for(Card c: hand){
+        for(HeartsCard c: hand){
             for(int i=0; i<pass.size(); i++){
                 if(c.equals(copyPass.peekAtTopCard())){
                     hand.remove(copyPass.peekAtTopCard());
@@ -106,9 +107,18 @@ public class HeartsPlayer {
         }
     }
 
-    public boolean checkIfCardinHand(Card card){
-        for(Card c: hand){
+    public boolean checkIfCardinHand(HeartsCard card){
+        for(HeartsCard c: hand){
             if(c.equals(card)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean checkIfFaceInHand(String face){
+        for(HeartsCard c: hand){
+            if(hand.contains(face)){
                 return true;
             }
         }
