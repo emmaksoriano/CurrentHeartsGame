@@ -19,7 +19,7 @@ public class CardDeck implements Serializable {
 
     // the cards in our deck; the last card in the ArrayList is the top card
     // in the deck
-    private ArrayList<Card> cards;
+    public ArrayList<Card> cards;
 
     /**
      * constructor, creating an empty deck

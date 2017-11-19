@@ -41,7 +41,7 @@ import edu.up.cs301.slapjack.SJState;
 public class HeartsHumanPlayer extends GameHumanPlayer implements Animator {
 
     //instance variables added from HeartsPlayer class
-    ArrayList<Card> hand ;
+    CardDeck hand;
     Card[] collection;
     Card[] myPass = new Card[3];
     boolean myTurn = false;
@@ -513,7 +513,7 @@ public class HeartsHumanPlayer extends GameHumanPlayer implements Animator {
 
 
     public Card[] getHand(){
-        return (Card[]) hand.toArray();
+        return (Card[]) hand.cards.toArray();
     }
 
     public String getName(){
@@ -539,12 +539,12 @@ public class HeartsHumanPlayer extends GameHumanPlayer implements Animator {
      * Set hand to given list of cards
      * @param initHand - shouldn't be more then
      */
-    public void setHand(Card[] initHand){
+    public void setHand(CardDeck initHand){
         int i;
-        for (i = 0; i < initHand.length; i++){
-            hand.add(initHand[i]);
+        for (Card c: initHand.cards){
+            hand.cards.add(c);
         }
-        collection= (Card[]) hand.toArray();
+        collection= (Card[]) hand.cards.toArray();
     }
 
     public void setName(String initName){
@@ -559,22 +559,24 @@ public class HeartsHumanPlayer extends GameHumanPlayer implements Animator {
         myTurn = initMyTurn;
     }
 
-    public void threeCardPass(Card[] pass, HeartsPlayer p){
+    public void threeCardPass(CardDeck pass, GamePlayer p){
         //pass cards to appropriate player
-        p.setHand(pass);
+        for(Card c: pass.cards) {
+            p.hand.cards.add(c);
+        }
 
         //remove cards passed to another player from hand
-        for(Card c: hand){
-            for(int i=0; i<pass.length; i++){
-                if(c.equals(pass[i])){
-                    hand.remove(pass[i]);
+        for(Card c: hand.cards){
+            for(Card i: pass.cards){
+                if(c.equals(i)){
+                    hand.cards.remove(i);
                 }
             }
         }
     }
 
     public boolean checkIfCardinHand(Card card){
-        for(Card c: hand){
+        for(Card c: hand.cards){
             if(c.equals(card)){
                 return true;
             }
