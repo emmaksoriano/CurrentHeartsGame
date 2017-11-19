@@ -561,7 +561,7 @@ public class HeartsHumanPlayer extends GameHumanPlayer implements Animator {
 
     public void threeCardPass(Card[] pass, HeartsPlayer p){
         //pass cards to appropriate player
-        p.setHand(pass);
+        //p.setHand(pass);
 
         //remove cards passed to another player from hand
         for(Card c: hand){

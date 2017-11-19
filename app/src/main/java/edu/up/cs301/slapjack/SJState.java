@@ -25,10 +25,10 @@ public class SJState extends GameState
     //  - 2: the "up" pile, where the top card
 	// Note that when players receive the state, all but the top card in all piles
 	// are passed as null.
-    private Deck[] piles;
+    public Deck[] piles;
     
     // whose turn is it to turn a card?
-    private int toPlay;
+    public int toPlay;
 
     /**
      * Constructor for objects of class SJState. Initializes for the beginning of the
