@@ -539,7 +539,7 @@ public class HeartsHumanPlayer extends GameHumanPlayer implements Animator {
      * Set hand to given list of cards
      * @param initHand - shouldn't be more then
      */
-    public void setHand(Card[] initHand){
+    public void setHand(CardDeck initHand){
         int i;
         for (i = 0; i < initHand.length; i++){
             hand.add(initHand[i]);
@@ -559,7 +559,7 @@ public class HeartsHumanPlayer extends GameHumanPlayer implements Animator {
         myTurn = initMyTurn;
     }
 
-    public void threeCardPass(Card[] pass, HeartsPlayer p){
+ public void threeCardPass(CardDeck pass, GamePlayer p){
         //pass cards to appropriate player
         //p.setHand(pass);
 
@@ -573,7 +573,8 @@ public class HeartsHumanPlayer extends GameHumanPlayer implements Animator {
         }
     }
 
-    public boolean checkIfCardinHand(Card card){
+
+    public boolean checkIfCardInHand(Card card){
         for(Card c: hand){
             if(c.equals(card)){
                 return true;

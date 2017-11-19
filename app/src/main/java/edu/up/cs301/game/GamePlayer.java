@@ -1,6 +1,9 @@
 package edu.up.cs301.game;
 
+import edu.up.cs301.card.Card;
 import edu.up.cs301.game.infoMsg.GameInfo;
+import edu.up.cs301.hearts.CardDeck;
+import edu.up.cs301.hearts.HeartsPlayer;
 
 /**
  * A player who plays a (generic) game. Each class that implements a player for
@@ -31,5 +34,24 @@ public interface GamePlayer {
 	
 	// whether this player supports a GUI
 	public boolean supportsGui();
+
+	public Card[] getHand();
+
+	public Card[] getMyPass();
+	public String getName();
+	public int getScore();
+	public void setMyPass(Card [] cards);
+	public void setIsWinner(boolean initWinner);
+	public void setHand(CardDeck initHand);
+	public void setName(String initName);
+	public void setScore(int initScore);
+	public void setMyTurn(boolean initMyTurn);
+	public void threeCardPass(CardDeck pass, GamePlayer p);
+	public boolean checkIfCardInHand(Card card);
+
+
+
+
+
 
 }// interface GamePlayer

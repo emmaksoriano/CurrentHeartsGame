@@ -9,6 +9,9 @@ import edu.up.cs301.card.Suit;
 
 
 /**
+ *
+ * NOT USING RIGHT NOW!!!! USE VEGDAHLS HEARTS!!!!!
+ *
  * Created by emmasoriano on 10/19/17.
  */
 

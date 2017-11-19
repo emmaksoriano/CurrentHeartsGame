@@ -9,6 +9,7 @@ import edu.up.cs301.game.GamePlayer;
 import edu.up.cs301.game.LocalGame;
 import edu.up.cs301.game.actionMsg.GameAction;
 
+
 /**
  * This class checks legality of players moves and finds the winner of the round.
  * Created by emmasoriano on 10/19/17.
@@ -25,7 +26,7 @@ public class HeartsLocalGame extends LocalGame {
     public HeartsLocalGame(){
         Log.i("HeartsLocalGame", "creating game");
         // create the state for the beginning of the game
-        currentGame = new HeartsGameState(1,"human");
+        currentGame = new HeartsGameState();//1,"human");
 
     }
 
@@ -34,6 +35,7 @@ public class HeartsLocalGame extends LocalGame {
      * validCard method checks if the card played by currentPlayer is legal
      *
      */
+    /*
     public boolean validCard(Card card){
 
         boolean valid = false;
@@ -44,7 +46,7 @@ public class HeartsLocalGame extends LocalGame {
         }
         // if not, check if they have a card of that suit,
         else{
-           for (Card c : currentGame.currentPlayer.hand){
+           for (Card c : currentGame.toPlay.hand){
                if(c.getSuit().equals(currentGame.table.cardsPlayed[0].getSuit())){
                    valid = false;
                }
@@ -53,6 +55,7 @@ public class HeartsLocalGame extends LocalGame {
 
         return valid;
     }
+    */
 
     /**
      *  validTurn method checks if its legal for a player to play a card
@@ -65,6 +68,7 @@ public class HeartsLocalGame extends LocalGame {
     /**
      * checks who's turn it is to play a card
      */
+   /*
     public HeartsPlayer checkTurn(){
         HeartsPlayer currentPlayer = null;
 
@@ -78,11 +82,13 @@ public class HeartsLocalGame extends LocalGame {
 
         return currentPlayer;
     }
+    */
 
     /**
      *   The winRound method determines which player won the round
      *   and sets their isWinner boolean to true.
      */
+    /*
     public void winRound(){
         //find suit of first card played
         Suit suit = currentGame.table.cardsPlayed[0].getSuit();
@@ -96,6 +102,7 @@ public class HeartsLocalGame extends LocalGame {
         }
         */
 
+    /*
         //find which player played that card
         Card winningCard = new Card(highestFace,suit);
         for(HeartsPlayer p: currentGame.players){
@@ -144,8 +151,8 @@ public class HeartsLocalGame extends LocalGame {
         }
         */
 
-    }
-
+   // }
+/*
     public int calculatePoints(){
         int points = 0;
 
@@ -164,6 +171,7 @@ public class HeartsLocalGame extends LocalGame {
     }
 
 
+
     public void updateScore(){
         int points = calculatePoints();
         for(int i = 0; i<currentGame.players.length; i++){
@@ -173,7 +181,7 @@ public class HeartsLocalGame extends LocalGame {
         }
     }
 
-
+*/
     protected void sendUpdatedStateTo(GamePlayer p) {
 
     }
