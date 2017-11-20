@@ -148,6 +148,19 @@ public class CardDeck implements Serializable {
         }
     }
 
+    //SARAH ADDED THIS!!!!!!!!!!!!!!!!!!
+    //
+    //
+    //
+    //BC I NEED IT!!
+    public void remove(Card c) {
+        // synchronize so that the underlying ArrayList is not accessed
+        // inconsistently
+        synchronized (this.cards) {
+            cards.remove(c);
+        }
+    }
+
     /**
      * @return the number of cards in the deck
      */

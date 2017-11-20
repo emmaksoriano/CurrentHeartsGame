@@ -111,7 +111,7 @@ public class EasyAI extends GameComputerPlayer {
         if(checkIfCardinHand(chosenCard)==true){
             //if they have this card, then take it away from the AI player's hand!
             //to do this we need to make sure that we can get the array of cards in the player's hand!
-            currentHand.removeCard(chosenCard);
+            currentHand.remove(chosenCard);
             return chosenCard;
         } else {
             strategy();
