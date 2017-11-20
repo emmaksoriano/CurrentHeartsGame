@@ -14,20 +14,22 @@ import edu.up.cs301.game.GamePlayer;
 
 public class HeartsPlayer {
 
-    CardDeck hand ;
-    Card[] collection;
-    Card[] myPass = new Card[3];
-    boolean myTurn = false;
-    boolean isWinner = false;
-    boolean hasTwoOfClubs = false;
-    int score = 0;
-    String name;
+    public CardDeck hand;
+    public Card[] collection;
+    public Card[] myPass = new Card[3];
+    public boolean myTurn = false;
+    public boolean isWinner = false;
+    public boolean hasTwoOfClubs = false;
+    public int score = 0;
+    public String name;
+    public HeartsGameState currentGameState;
 
 
 
     //Constructor
-    public HeartsPlayer(String playerName){
+    public HeartsPlayer(String playerName, HeartsGameState GS){
 
+        currentGameState = GS;
         //set players name
         name = playerName;
 
@@ -77,7 +79,7 @@ public class HeartsPlayer {
             hand.add(c);
             initHand.removeTopCard();
         }
-        collection= (Card[]) hand.cards.toArray();
+        collection = (Card[]) hand.cards.toArray();
     }
 
     public void setName(String initName){

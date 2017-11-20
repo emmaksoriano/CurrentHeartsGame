@@ -1,6 +1,8 @@
 package edu.up.cs301.hearts;
 
 import edu.up.cs301.card.Card;
+import edu.up.cs301.card.Suit;
+import edu.up.cs301.game.GamePlayer;
 
 /**
  * Created by emmasoriano on 10/19/17.
@@ -8,7 +10,8 @@ import edu.up.cs301.card.Card;
 
 public class Table {
 
-    Card[] cardsPlayed = new Card[4];
+    public Card[] cardsPlayed = new Card[4];
+    public Suit SuitIndex;
 
     //Constructor
     public Table(){
@@ -23,6 +26,9 @@ public class Table {
         for(int i=0; i<4; i++){
             if(cardsPlayed[i] == null){
                 cardsPlayed[i]=card;
+                if(i == 0){
+                    SuitIndex = card.getSuit();
+                }
                 break;
             }
         }

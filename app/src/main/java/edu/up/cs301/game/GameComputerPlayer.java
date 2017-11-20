@@ -1,5 +1,6 @@
 package edu.up.cs301.game;
 
+import edu.up.cs301.card.Card;
 import edu.up.cs301.game.actionMsg.GameOverAckAction;
 import edu.up.cs301.game.actionMsg.MyNameIsAction;
 import edu.up.cs301.game.actionMsg.ReadyAction;
@@ -11,6 +12,7 @@ import edu.up.cs301.game.infoMsg.TimerInfo;
 import edu.up.cs301.game.util.GameTimer;
 import edu.up.cs301.game.util.MessageBox;
 import edu.up.cs301.game.util.Tickable;
+import edu.up.cs301.hearts.HeartsGameState;
 
 import android.os.Handler;
 import android.os.Looper;
@@ -78,6 +80,7 @@ public abstract class GameComputerPlayer implements GamePlayer, Tickable {
 	 */
 	public GameComputerPlayer(String name) {
 		this.name = name;
+		HeartsGameState currentState = new HeartsGameState();
 	}
 
 	/**

@@ -148,6 +148,19 @@ public class CardDeck implements Serializable {
         }
     }
 
+    //SARAH ADDED THIS!!!!!!!!!!!!!!!!!!
+    //
+    //
+    //
+    //BC I NEED IT!!
+    public void remove(Card c) {
+        // synchronize so that the underlying ArrayList is not accessed
+        // inconsistently
+        synchronized (this.cards) {
+            cards.remove(c);
+        }
+    }
+
     /**
      * @return the number of cards in the deck
      */
@@ -240,6 +253,7 @@ public class CardDeck implements Serializable {
         // needs to be array, NOT ArrayList to have an actual order
 
         ArrayList<Card> sortedCards= new ArrayList<Card>();
+        Card[] sortedCardsArray;
 
         if(hand.cards != null) {
             for (int i = 0; i < 4; i++) {
@@ -261,7 +275,7 @@ public class CardDeck implements Serializable {
                 }
             }
         }
-
+        sortedCardsArray = sortedCards.toArray(new Card[hand.size()]);
         hand.cards = sortedCards;
 
     }
