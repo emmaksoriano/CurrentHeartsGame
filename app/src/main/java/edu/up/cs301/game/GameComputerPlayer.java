@@ -1,5 +1,6 @@
 package edu.up.cs301.game;
 
+import edu.up.cs301.card.Card;
 import edu.up.cs301.game.actionMsg.GameOverAckAction;
 import edu.up.cs301.game.actionMsg.MyNameIsAction;
 import edu.up.cs301.game.actionMsg.ReadyAction;

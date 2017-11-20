@@ -3,6 +3,8 @@ package edu.up.cs301.hearts;
 import java.util.Random;
 
 import edu.up.cs301.card.Card;
+import edu.up.cs301.card.Rank;
+import edu.up.cs301.card.Suit;
 import edu.up.cs301.game.GameComputerPlayer;
 import edu.up.cs301.game.infoMsg.GameInfo;
 
@@ -10,9 +12,7 @@ import edu.up.cs301.game.infoMsg.GameInfo;
  * Updated by S. Seydlitz on 11/17/17
  */
 
-public class EasyAI extends HeartsPlayer {
-//public class EasyAI extends GameComputerPlayer {
-    /*
+public class EasyAI extends GameComputerPlayer {
 
     public EasyAI(String playerName) {
         super(playerName);
@@ -27,53 +27,61 @@ public class EasyAI extends HeartsPlayer {
     int diamonds = 2;
     int hearts = 4;
     String thisGuy = this.getName();
-    HeartsCard[] currentHand = thisGuy.getHand();
-    HeartsGameState thisTime = new HeartsGameState(0, thisGuy);
+    CardDeck currentHand = new CardDeck(thisGuy.getHand);
+    HeartsGameState thisTime = new HeartsGameState(0,thisGuy);
     int baseSuit = thisTime.getCurrentSuit();
     boolean heartsPlayed = false;
-    HeartsCard chosenCard;
+    Card chosenCard;
     String baseN;
-    public String[] faceValues = {"Two", "Three", "Four", "Five", "Six", "Seven",
-            "Eight", "Nine", "Ten", "Jack", "Queen", "King", "Ace"};
+    CardDeck hand ;
+    Card[] collection;
+    Card[] myPass = new Card[3];
+    boolean myTurn = false;
+    boolean isWinner = false;
+    boolean hasTwoOfClubs = false;
+    int score = 0;
+    String name;
 
     public void strategy() {
-//pick a card at random from EasyAI's card deck
+        //pick a card at random from EasyAI's card deck
         //Remember, there are three different AI's, so there are three different decks to keep track of
         Random ran = new Random();
         //x is rank, y is suit
         int x = ran.nextInt(14);
         int y = ran.nextInt(5);
-        if (baseSuit == clubs) {
+        if(baseSuit==clubs){
             baseN = "Clubs";
         }
-        if (baseSuit == spades) {
+        if(baseSuit==spades){
             baseN = "Spades";
         }
-        if (baseSuit == diamonds) {
+        if(baseSuit==diamonds){
             baseN = "Diamonds";
         }
-        if (baseSuit == hearts) {
+        if(baseSuit==hearts){
             baseN = "Hearts";
         }
-        if (baseSuit == -1) {
+        if(baseSuit==-1){
             int z = ran.nextInt(4);
-            chosenCard = new HeartsCard(x, z);
+            chosenCard = new Card(x,z);
         }//our card will be first
 
         //check and see if the AI player has a card of the suit that was originally played. If not, play any card
 
         /////check and see if the player has this card in their hand.
-        if (checkIfFaceInHand(baseN) == true) {
-            chosenCard = new HeartsCard(x, baseSuit);
-        } else {
-            chosenCard = new HeartsCard(x, y);
+        if(checkIfFaceInHand(baseN)==true){
+            chosenCard = new Card(x, baseSuit);
+        }
+        else{
+            chosenCard = new Card(x,y);
         }
 
     }
 
-    public HeartsCard playCard() {
-        if (checkIfCardinHand(chosenCard) == true) {
+    public Card playCard() {
+        if(checkIfCardinHand(chosenCard)==true){
             //if they have this card, then take it away from the AI player's hand!
+            //to do this we need to make sure that we can get the array of cards in the player's hand!
             return chosenCard;
         } else {
             strategy();
@@ -89,7 +97,7 @@ public class EasyAI extends HeartsPlayer {
 
 
     public Card[] getHand(){
-        return (Card[]) hand.toArray();
+        return (Card[]) hand.cards.toArray();
     }
 
     public String getName(){
@@ -120,7 +128,7 @@ public class EasyAI extends HeartsPlayer {
         for (i = 0; i < initHand.length; i++){
             hand.add(initHand[i]);
         }
-        collection= (Card[]) hand.toArray();
+        collection= (Card[]) hand.cards.toArray();
     }
 
     public void setName(String initName){
@@ -143,7 +151,7 @@ public class EasyAI extends HeartsPlayer {
         for(Card c: hand){
             for(int i=0; i<pass.length; i++){
                 if(c.equals(pass[i])){
-                    hand.remove(pass[i]);
+                    hand.cards.remove(pass[i]);
                 }
             }
         }
