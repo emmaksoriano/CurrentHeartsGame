@@ -31,15 +31,46 @@ import edu.up.cs301.game.infoMsg.GameState;
  */
 public class HeartsGameState extends GameState {
 
-    public GamePlayer[] players = new GamePlayer[4];
-    Table table = new Table();
-
-
-    private static final long serialVersionUID = -8269749892027578792L;
-
     ///////////////////////////////////////////////////
     // ************** instance variables ************
     ///////////////////////////////////////////////////
+
+    private static final long serialVersionUID = -8269749892027578792L;
+
+    /*
+public class HeartsGameState extends GameState {
+
+    // Declare Instance Variables
+    public String userName;
+    public GamePlayer[] players = new GamePlayer[4];
+    public GamePlayer currentPlayer;
+    public GamePlayer nextPlayer;
+    public CardDeck deck;
+    public int playerIndex;
+    public int difficulty;
+    public int[] currentScores;
+    public int currentSuit;
+
+
+    /**
+     * HeartsGameState Constructor
+     * @param d
+     * @param user
+     */
+
+    public GamePlayer[] players = new GamePlayer[4];
+    public Table table;
+    private int[] Scores = new int[4];
+    public boolean GameOver = false;
+    public int Trick = 0;
+
+    public GamePlayer CurrentPlayer;
+    public int CurrentPlayerIndex;
+
+    // Chosen difficulty
+    //  - 0: EasyAI
+    //  - 1: HardAI
+    protected int Difficulty;
 
     // the three piles of cards:
     //  - 0: pile for player 0
@@ -61,7 +92,7 @@ public class HeartsGameState extends GameState {
     public HeartsGameState() {
         // randomly pick the player who starts
         //toPlay = (int)(2*Math.random());
-        toPlay= hasTwoOfClubs();
+        toPlay = hasTwoOfClubs();
 
         // initialize the decks as follows:
         // - each player deck (#0 and #1) gets half the cards, randomly
@@ -102,6 +133,50 @@ public class HeartsGameState extends GameState {
         piles[2] = new Deck(orig.piles[2]);
         piles[3] = new Deck(orig.piles[3]);
 
+    }
+
+    /**
+     * Set AI difficulty
+     * @param difficulty
+     *  - 0 : EasyAI
+     *  - 1 : HardAI
+     */
+    public void setDifficulty(int difficulty){
+        if((difficulty == 0)||(difficulty == 1)){
+            this.Difficulty = difficulty;
+        }
+        else{
+            return;
+        }
+    }
+
+    /**
+     * Set Current Player
+     * @param index
+     */
+    public void setCurrentPlayer(int index){
+        if((index >= 0)&&(index <= 3)){
+            CurrentPlayer = players[index];
+            CurrentPlayerIndex = index;
+            return;
+        }
+        else {
+            return;
+        }
+    }
+
+    /**
+     * Changes the Current Player to the next player.
+     */
+    public void NextTurn(){
+        if(CurrentPlayerIndex == 3){
+            CurrentPlayer = players[0];
+            CurrentPlayerIndex = 0;
+        }
+        else {
+            CurrentPlayerIndex++;
+            CurrentPlayer = players[CurrentPlayerIndex];
+        }
     }
 
     /**
