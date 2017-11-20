@@ -27,13 +27,12 @@ public class EasyAI extends GameComputerPlayer {
     int diamonds = 2;
     int hearts = 4;
     String thisGuy = this.getName();
-    CardDeck currentHand = new CardDeck(thisGuy.getHand);
-    HeartsGameState thisTime = new HeartsGameState(0,thisGuy);
-    int baseSuit = thisTime.getCurrentSuit();
+    CardDeck currentHand = new CardDeck(thisGuy.getHand); //THIS!!!
+    HeartsGameState thisTime = new HeartsGameState(0,thisGuy); //THIS!!
+    Suit baseSuit = thisTime.getCurrentSuit(); //THIS!
     boolean heartsPlayed = false;
     Card chosenCard;
-    String baseN;
-    CardDeck hand ;
+    CardDeck hand;
     Card[] collection;
     Card[] myPass = new Card[3];
     boolean myTurn = false;
@@ -43,37 +42,67 @@ public class EasyAI extends GameComputerPlayer {
     String name;
 
     public void strategy() {
+
+        Rank[] ranks = new Rank[13];
+        Suit[] suits = new Suit[4];
+        ranks[0].fromChar('2');
+        ranks[1].fromChar('3');
+        ranks[2].fromChar('4');
+        ranks[3].fromChar('5');
+        ranks[4].fromChar('6');
+        ranks[5].fromChar('7');
+        ranks[6].fromChar('8');
+        ranks[7].fromChar('9');
+        ranks[8].fromChar('T');
+        ranks[9].fromChar('J');
+        ranks[10].fromChar('Q');
+        ranks[11].fromChar('K');
+        ranks[12].fromChar('A');
+        suits[0].fromChar('C');
+        suits[1].fromChar('S');
+        suits[2].fromChar('D');
+        suits[3].fromChar('H');
+
         //pick a card at random from EasyAI's card deck
         //Remember, there are three different AI's, so there are three different decks to keep track of
-        Random ran = new Random();
+        Random rand = new Random();
         //x is rank, y is suit
-        int x = ran.nextInt(14);
-        int y = ran.nextInt(5);
+        int x = rand.nextInt(14);
+        int y = rand.nextInt(5);
+        /*
         if(baseSuit==clubs){
-            baseN = "Clubs";
+            baseSuit = suits[0];
         }
         if(baseSuit==spades){
-            baseN = "Spades";
+            baseSuit = "Spades";
         }
         if(baseSuit==diamonds){
-            baseN = "Diamonds";
+            baseSuit = "Diamonds";
         }
         if(baseSuit==hearts){
-            baseN = "Hearts";
+            baseSuit = "Hearts";
         }
-        if(baseSuit==-1){
-            int z = ran.nextInt(4);
-            chosenCard = new Card(x,z);
+        */
+        if(baseSuit==null){
+            /*
+            int o,p;
+            for(o=0;o<13;o++) {
+                for(p=0;p<4;p++){
+                    chosenCard = new Card(ranks[o],suits[p]);
+                }
+            }
+            */
+            chosenCard = new Card(ranks[x],suits[y]);
         }//our card will be first
 
         //check and see if the AI player has a card of the suit that was originally played. If not, play any card
 
         /////check and see if the player has this card in their hand.
-        if(checkIfFaceInHand(baseN)==true){
-            chosenCard = new Card(x, baseSuit);
+        else if(checkIfFaceInHand(baseSuit)==true){
+            chosenCard = new Card(ranks[x], baseSuit);
         }
         else{
-            chosenCard = new Card(x,y);
+            chosenCard = new Card(ranks[x],suits[y]);
         }
 
     }
@@ -82,11 +111,12 @@ public class EasyAI extends GameComputerPlayer {
         if(checkIfCardinHand(chosenCard)==true){
             //if they have this card, then take it away from the AI player's hand!
             //to do this we need to make sure that we can get the array of cards in the player's hand!
+            currentHand.removeCard(chosenCard);
             return chosenCard;
         } else {
             strategy();
         }
-
+        return null;
     }
 
 //Added methods from HeartsPlayer class
@@ -143,6 +173,7 @@ public class EasyAI extends GameComputerPlayer {
         myTurn = initMyTurn;
     }
 
+    /*
     public void threeCardPass(Card[] pass, HeartsPlayer p){
         //pass cards to appropriate player
         p.setHand(pass);
@@ -157,13 +188,24 @@ public class EasyAI extends GameComputerPlayer {
         }
     }
 
+
+    */
     public boolean checkIfCardinHand(Card card){
-        for(Card c: hand){
+        for(Card c: currentHand.cards){
             if(c.equals(card)){
                 return true;
             }
         }
         return false;
     }
+
+    public boolean checkIfFaceInHand(Suit face){
+        for(Card c: currentHand.cards){
+            if(c.getSuit().equals(face)){
+                return true;
+            }
+        }
+        return false;
+    }
 }
-}
+
