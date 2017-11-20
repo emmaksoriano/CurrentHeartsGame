@@ -6,13 +6,14 @@ import edu.up.cs301.card.Card;
 import edu.up.cs301.card.Rank;
 import edu.up.cs301.card.Suit;
 import edu.up.cs301.game.GameComputerPlayer;
+import edu.up.cs301.game.GamePlayer;
 import edu.up.cs301.game.infoMsg.GameInfo;
 
 /**
  * Updated by S. Seydlitz on 11/17/17
  */
 
-public class EasyAI extends GameComputerPlayer {
+public class EasyAI implements GameComputerPlayer {
 
     public EasyAI(String playerName) {
         super(playerName);
@@ -22,17 +23,12 @@ public class EasyAI extends GameComputerPlayer {
 
     }
 
-    int clubs = 0;
-    int spades = 1;
-    int diamonds = 2;
-    int hearts = 4;
-    String thisGuy = this.getName();
+    //String thisGuy = currentPlayer.getName();
     CardDeck currentHand = new CardDeck(thisGuy.getHand); //THIS!!!
-    HeartsGameState thisTime = new HeartsGameState();
+    HeartsGameState thisTime;
     Suit baseSuit = thisTime.getCurrentSuit(); //THIS!
-    boolean heartsPlayed = false;
+    //boolean heartsPlayed = false;
     Card chosenCard;
-    CardDeck hand;
     Card[] collection;
     Card[] myPass = new Card[3];
     boolean myTurn = false;
@@ -104,7 +100,7 @@ public class EasyAI extends GameComputerPlayer {
 
 
     public Card[] getHand(){
-        return (Card[]) hand.cards.toArray();
+        return (Card[]) currentHand.cards.toArray();
     }
 
     public String getName(){
@@ -135,7 +131,7 @@ public class EasyAI extends GameComputerPlayer {
         for (i = 0; i < initHand.length; i++){
             hand.add(initHand[i]);
         }
-        collection= (Card[]) hand.cards.toArray();
+        collection= (Card[]) currentHand.cards.toArray();
     }
 
     public void setName(String initName){
