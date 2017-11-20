@@ -50,8 +50,6 @@ public class HeartsGameState extends GameState {
     public int difficulty;
     public int[] currentScores;
     public int currentSuit;
-    public int round;
-    Table table;
 
 
     /**
@@ -61,7 +59,7 @@ public class HeartsGameState extends GameState {
      */
 
     public GamePlayer[] players = new GamePlayer[4];
-    public Table table = new Table();
+    public Table table;
     private int[] Scores = new int[4];
     public boolean GameOver = false;
     public int Trick = 0;

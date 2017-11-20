@@ -240,6 +240,7 @@ public class CardDeck implements Serializable {
         // needs to be array, NOT ArrayList to have an actual order
 
         ArrayList<Card> sortedCards= new ArrayList<Card>();
+        Card[] sortedCardsArray;
 
         if(hand.cards != null) {
             for (int i = 0; i < 4; i++) {
@@ -261,7 +262,7 @@ public class CardDeck implements Serializable {
                 }
             }
         }
-
+        sortedCardsArray = sortedCards.toArray(new Card[hand.size()]);
         hand.cards = sortedCards;
 
     }
