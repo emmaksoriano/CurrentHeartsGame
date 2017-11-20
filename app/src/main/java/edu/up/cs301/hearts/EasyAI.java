@@ -28,7 +28,7 @@ public class EasyAI extends GameComputerPlayer {
     int hearts = 4;
     String thisGuy = this.getName();
     CardDeck currentHand = new CardDeck(thisGuy.getHand); //THIS!!!
-    HeartsGameState thisTime = new HeartsGameState(0,thisGuy); //THIS!!
+    HeartsGameState thisTime = new HeartsGameState();
     Suit baseSuit = thisTime.getCurrentSuit(); //THIS!
     boolean heartsPlayed = false;
     Card chosenCard;
@@ -67,37 +67,14 @@ public class EasyAI extends GameComputerPlayer {
         //Remember, there are three different AI's, so there are three different decks to keep track of
         Random rand = new Random();
         //x is rank, y is suit
-        int x = rand.nextInt(14);
-        int y = rand.nextInt(5);
-        /*
-        if(baseSuit==clubs){
-            baseSuit = suits[0];
-        }
-        if(baseSuit==spades){
-            baseSuit = "Spades";
-        }
-        if(baseSuit==diamonds){
-            baseSuit = "Diamonds";
-        }
-        if(baseSuit==hearts){
-            baseSuit = "Hearts";
-        }
-        */
+        int x = rand.nextInt(14 - 0) + 0;
+        int y = rand.nextInt(5 - 0 + 0);
+
         if(baseSuit==null){
-            /*
-            int o,p;
-            for(o=0;o<13;o++) {
-                for(p=0;p<4;p++){
-                    chosenCard = new Card(ranks[o],suits[p]);
-                }
-            }
-            */
             chosenCard = new Card(ranks[x],suits[y]);
         }//our card will be first
 
         //check and see if the AI player has a card of the suit that was originally played. If not, play any card
-
-        /////check and see if the player has this card in their hand.
         else if(checkIfFaceInHand(baseSuit)==true){
             chosenCard = new Card(ranks[x], baseSuit);
         }
