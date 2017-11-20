@@ -8,7 +8,7 @@ import edu.up.cs301.game.GamePlayer;
 import edu.up.cs301.game.LocalGame;
 import edu.up.cs301.game.config.GameConfig;
 import edu.up.cs301.game.config.GamePlayerType;
-import edu.up.cs301.slapjack.SJComputerPlayer;
+//import edu.up.cs301.slapjack.SJComputerPlayer;
 
 import android.graphics.Color;
 
@@ -38,11 +38,13 @@ public class HeartsMainActivity extends GameMainActivity {
                 return new HeartsHumanPlayer(name);
             }
         });
+        /*
         playerTypes.add(new GamePlayerType("computer player (easy)") {
             public GamePlayer createPlayer(String name) {
                 return new EasyAI(name);
             }
         });
+        */
         playerTypes.add(new GamePlayerType("computer player (slow)") {
             public GamePlayer createPlayer(String name) {
                 return new HardAI(name);

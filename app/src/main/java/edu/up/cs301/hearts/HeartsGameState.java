@@ -60,6 +60,8 @@ public class HeartsGameState extends GameState {
      */
     public HeartsGameState() {
         // randomly pick the player who starts
+        toPlay = (int)(4*Math.random());
+        //toPlay = 0;
         //toPlay = (int)(2*Math.random());
         toPlay= hasTwoOfClubs();
 

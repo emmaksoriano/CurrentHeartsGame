@@ -10,7 +10,7 @@ import edu.up.cs301.game.infoMsg.GameInfo;
  * Updated by S. Seydlitz on 11/17/17
  */
 
-public class EasyAI extends HeartsPlayer {
+//public class EasyAI extends HeartsPlayer {
 //public class EasyAI extends GameComputerPlayer {
     /*
 
@@ -115,6 +115,7 @@ public class EasyAI extends HeartsPlayer {
      * Set hand to given list of cards
      * @param initHand - shouldn't be more then
      */
+    /*
     public void setHand(Card[] initHand){
         int i;
         for (i = 0; i < initHand.length; i++){
@@ -158,4 +159,5 @@ public class EasyAI extends HeartsPlayer {
         return false;
     }
 }
-}
+*/
+//}

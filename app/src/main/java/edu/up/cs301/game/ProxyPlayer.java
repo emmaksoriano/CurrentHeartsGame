@@ -17,7 +17,8 @@ import android.util.Log;
  * @version July 2013
  */
 public class ProxyPlayer implements GamePlayer {
-    
+
+    String name;
     // the game object
     private Game game;
     
@@ -71,7 +72,9 @@ public class ProxyPlayer implements GamePlayer {
         // return value based on whether we are marked as being ready
         return isReady;
     }
-
+    public void setName(String initName){
+        name=initName;
+    }
     
     /**
      * Starts the game. (In this case the constructor has already done

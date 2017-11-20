@@ -163,9 +163,9 @@ public class HeartsLocalGame extends LocalGame {
     public void updateScore(){
         int points = calculatePoints();
         for(int i = 0; i<currentGame.players.length; i++){
-            if(currentGame.players[i].isWinner == true){
-                currentGame.players[i].setScore(points);
-            }
+            //if(currentGame.players[i].isWinner == true){
+            //    currentGame.players[i].setScore(points);
+            //}
         }
     }
 
