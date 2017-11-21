@@ -38,6 +38,10 @@ public class Table {
         return cardsPlayed;
     }
 
+    public Suit getSuitIndex(){
+        return SuitIndex;
+    }
+
     public void clearTable(){
         for(int i=0; i<4; i++){
             cardsPlayed[i]=null;

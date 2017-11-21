@@ -12,21 +12,21 @@ import edu.up.cs301.game.infoMsg.GameInfo;
 /**
  * Updated by S. Seydlitz on 11/17/17
  */
-/*
+
 public class EasyAI extends GameComputerPlayer {
 
-    public EasyAI(String playerName) {
-        super(playerName);
+    public EasyAI(String playerName, HeartsGameState HGS) {
+        super(playerName, HGS);
     }
 
     protected void receiveInfo(GameInfo info) {
 
     }
 
-    GamePlayer thisGuy = HeartsGameState.getCurrentPlayer();
-    CardDeck currentHand = new CardDeck(thisGuy.hand); //THIS!!!
-    HeartsGameState thisTime;
-    Suit baseSuit = thisTime.getCurrentSuit(); //THIS!
+    GamePlayer thisGuy = HeartsGameState.CurrentPlayer(); //This is causing so many problems
+    CardDeck currentHand = new CardDeck(thisGuy.hand);
+    Table table = new Table();
+    Suit baseSuit = table.getSuitIndex();
     //boolean heartsPlayed = false;
     Card chosenCard;
     Card[] collection;
@@ -85,6 +85,7 @@ public class EasyAI extends GameComputerPlayer {
             //if they have this card, then take it away from the AI player's hand!
             //to do this we need to make sure that we can get the array of cards in the player's hand!
             currentHand.remove(chosenCard);
+            sleep(1000);
             return chosenCard;
         } else {
             strategy();
@@ -122,11 +123,12 @@ public class EasyAI extends GameComputerPlayer {
         isWinner= initWinner;
     }
 
+    /*
     /**
      * Set hand to given list of cards
      * @param initHand - shouldn't be more then
-     */
-/*
+
+
     public void setHand(Card[] initHand){
         int i;
         for (i = 0; i < initHand.length; i++){
@@ -164,7 +166,7 @@ public class EasyAI extends GameComputerPlayer {
 
 
     */
-/*
+
     public boolean checkIfCardinHand(Card card){
         for(Card c: currentHand.cards){
             if(c.equals(card)){
@@ -183,4 +185,3 @@ public class EasyAI extends GameComputerPlayer {
         return false;
     }
 }
-*/

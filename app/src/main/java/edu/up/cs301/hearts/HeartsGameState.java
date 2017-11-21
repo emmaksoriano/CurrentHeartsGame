@@ -181,8 +181,6 @@ public class HeartsGameState extends GameState {
         return table;
     }
 
-    public
-
     /**
      * Changes the Current Player to the next player.
      */
@@ -210,7 +208,7 @@ public class HeartsGameState extends GameState {
 
     /**
      * Tells which player's turn it is.
-     *
+     *09
      * @return the index (0 or 1) of the player whose turn it is.
      */
     public int toPlay() {
