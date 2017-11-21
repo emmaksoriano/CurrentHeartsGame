@@ -53,7 +53,7 @@ public class HeartsGameState extends GameState {
     public int CurrentPlayerIndex;
 
     // Chosen difficulty
-    //  - 0: EasyAI
+    //  - 0: EasyAIxxx
     //  - 1: HardAI
     protected int Difficulty;
 
@@ -108,7 +108,7 @@ public class HeartsGameState extends GameState {
      *
      * @param orig the state to be copied
      */
-    public HeartsGameState(edu.up.cs301.hearts.HeartsGameState orig) {
+    public HeartsGameState(HeartsGameState orig) {
         // set index of player whose turn it is
         toPlay = orig.toPlay;
         // create new deck array, making copy of each deck
@@ -123,7 +123,7 @@ public class HeartsGameState extends GameState {
     /**
      * Set AI difficulty
      * @param difficulty
-     *  - 0 : EasyAI
+     *  - 0 : EasyAIxxx
      *  - 1 : HardAI
      */
     public void setDifficulty(int difficulty){
@@ -290,7 +290,7 @@ public class HeartsGameState extends GameState {
         players[0] = new HeartsHumanPlayer(userName);
         for(i = 1; i <= 3; i++){
             if(difficulty == 0){
-                EasyAI newAI = new EasyAI("Easy AI " + i);
+                EasyAIxxx newAI = new EasyAIxxx("Easy AI " + i);
                 players[i] = newAI;
             }
             else{

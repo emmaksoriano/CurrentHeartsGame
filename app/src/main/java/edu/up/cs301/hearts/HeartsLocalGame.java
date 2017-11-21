@@ -179,7 +179,10 @@ public class HeartsLocalGame extends LocalGame {
 
 */
     protected void sendUpdatedStateTo(GamePlayer p) {
-
+        int thisPlayerNum = this.getPlayerIdx(p);
+        HeartsGameState tempState = new HeartsGameState(currentGame);
+        // need to null out some stuff in state
+        p.sendInfo(tempState);
     }
 
     protected boolean canMove(int playerIdx) {

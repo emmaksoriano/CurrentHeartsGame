@@ -38,13 +38,11 @@ public class HeartsMainActivity extends GameMainActivity {
                 return new HeartsHumanPlayer(name);
             }
         });
-        /*
         playerTypes.add(new GamePlayerType("computer player (easy)") {
             public GamePlayer createPlayer(String name) {
                 return new EasyAI(name);
             }
         });
-        */
         //playerTypes.add(new GamePlayerType("computer player (slow)") {
            // public GamePlayer createPlayer(String name) {
                // return new HardAI(name);

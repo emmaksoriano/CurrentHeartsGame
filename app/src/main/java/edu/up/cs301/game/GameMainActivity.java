@@ -475,7 +475,7 @@ View.OnClickListener {
 	 * NOTE: With the current layout it could either be a Button or ImageButton.
 	 */
 	public void onClick(View button) {
-		//add if statement to ensure all computer players are the same type (i.e. all HardAI or EasyAI)
+		//add if statement to ensure all computer players are the same type (i.e. all HardAI or EasyAIxxx)
 		
 		Log.i("onClick", "just clicked");
 		

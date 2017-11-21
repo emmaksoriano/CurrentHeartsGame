@@ -136,7 +136,7 @@ public class HeartsHumanPlayer extends GameHumanPlayer implements Animator {
      */
     @Override
     public void receiveInfo(GameInfo info) {
-        Log.i("HeartsComputerPlayer", "receiving updated state ("+info.getClass()+")");
+        Log.i("HeartsHumanPlayer", "receiving updated state ("+info.getClass()+")");
         if (info instanceof IllegalMoveInfo || info instanceof NotYourTurnInfo) {
             // if we had an out-of-turn or illegal move, flash the screen
             surface.flash(Color.RED, 50);
@@ -207,7 +207,7 @@ public class HeartsHumanPlayer extends GameHumanPlayer implements Animator {
      * 		the background color
      */
     public int backgroundColor() {
-        return backgroundColor;
+        return Color.GREEN;
     }
 
     /**
@@ -251,9 +251,11 @@ public class HeartsHumanPlayer extends GameHumanPlayer implements Animator {
      */
 
     public void tick(Canvas g) {
+
         // ignore if we have not yet received the game state
         if (state == null) return;
         //getCanvas(g);
+
 
         CardDeck myDeck = state.getDeck(0);
 

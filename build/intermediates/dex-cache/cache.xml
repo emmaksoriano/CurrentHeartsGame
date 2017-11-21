@@ -3,21 +3,21 @@
 
     <item
         is-multidex="true"
-        jar="C:\Users\lytle\Documents\Object\CurrentHeartsGame\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jar="/Users/emmasoriano/Desktop/JUNIOR YEAR/CS301/CurrentHeartsGame3/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
         sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
-        <dex dex="C:\Users\lytle\Documents\Object\CurrentHeartsGame\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_62fe0d864fe1955f1a18e3055158d36110229820\classes.dex" />
+        <dex dex="/Users/emmasoriano/Desktop/JUNIOR YEAR/CS301/CurrentHeartsGame3/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_db03268cc7380262281a9a6509981cd66489f9bf/classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\lytle\Documents\Object\CurrentHeartsGame\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jar="/Users/emmasoriano/Desktop/JUNIOR YEAR/CS301/CurrentHeartsGame3/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
-        sha1="6d17473ee3fb4e9ee8db409a1332d57b6776d374">
-        <dex dex="C:\Users\lytle\Documents\Object\CurrentHeartsGame\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_358290eb1b417c04c5c24b6de69903e71af93915\classes.dex" />
+        sha1="2808b3256ad4eeeef30e8d8e6aefe102ba478d1f">
+        <dex dex="/Users/emmasoriano/Desktop/JUNIOR YEAR/CS301/CurrentHeartsGame3/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_594a1f8ab6a9319b1b5f3ef6153f246369cec413/classes.dex" />
     </item>
 
 </items>
