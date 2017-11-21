@@ -167,7 +167,7 @@ public class HeartsLocalGame extends LocalGame {
         return points;
     }
 
-
+/*
     public void updateScore(){
         int points = calculatePoints();
         for(int i = 0; i<players.length; i++){
@@ -177,7 +177,7 @@ public class HeartsLocalGame extends LocalGame {
         }
     }
 
-
+*/
     protected void sendUpdatedStateTo(GamePlayer p) {
 
     }

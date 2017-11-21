@@ -13,7 +13,7 @@ import edu.up.cs301.game.config.GamePlayerType;
 import android.graphics.Color;
 
 /**
- * this is the primary activity for Slapjack game
+ * this is the primary activity for Hearts game
  *
  * @author Steven R. Vegdahl
  * @version July 2013

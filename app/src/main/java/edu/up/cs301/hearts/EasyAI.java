@@ -13,7 +13,7 @@ import edu.up.cs301.game.infoMsg.GameInfo;
  * Updated by S. Seydlitz on 11/17/17
  */
 
-public class EasyAI implements GameComputerPlayer {
+public class EasyAI extends GameComputerPlayer {
 
     public EasyAI(String playerName) {
         super(playerName);
@@ -23,8 +23,8 @@ public class EasyAI implements GameComputerPlayer {
 
     }
 
-    //String thisGuy = currentPlayer.getName();
-    CardDeck currentHand = new CardDeck(thisGuy.getHand); //THIS!!!
+    GamePlayer thisGuy = HeartsGameState.getCurrentPlayer();
+    CardDeck currentHand = new CardDeck(thisGuy.hand); //THIS!!!
     HeartsGameState thisTime;
     Suit baseSuit = thisTime.getCurrentSuit(); //THIS!
     //boolean heartsPlayed = false;

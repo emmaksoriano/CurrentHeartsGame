@@ -80,7 +80,6 @@ public abstract class GameComputerPlayer implements GamePlayer, Tickable {
 	 */
 	public GameComputerPlayer(String name) {
 		this.name = name;
-		HeartsGameState currentState = new HeartsGameState();
 	}
 
 	/**
