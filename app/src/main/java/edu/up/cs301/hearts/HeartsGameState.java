@@ -223,6 +223,8 @@ public class HeartsGameState extends GameState {
 }
 
 
+
+
     /**
      * Replaces all cards with null, except for the top card of deck 2
      */
