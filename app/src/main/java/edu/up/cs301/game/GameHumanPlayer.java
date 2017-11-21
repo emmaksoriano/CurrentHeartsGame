@@ -11,6 +11,7 @@ import edu.up.cs301.game.infoMsg.TimerInfo;
 import edu.up.cs301.game.util.GameTimer;
 import edu.up.cs301.game.util.MessageBox;
 import edu.up.cs301.game.util.Tickable;
+import edu.up.cs301.hearts.HeartsGameState;
 
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -43,6 +44,7 @@ public abstract class GameHumanPlayer implements GamePlayer, Tickable {
 	private GameMainActivity myActivity; // the current activity
 	private GameTimer myTimer = new GameTimer(this); // my player's timer
 	private boolean gameOver; // whether the game is over
+	public HeartsGameState HeartsGS;
 
 	/**
 	 * constructor
@@ -50,10 +52,10 @@ public abstract class GameHumanPlayer implements GamePlayer, Tickable {
 	 * @param name the name of the player
 	 */
 
-	public GameHumanPlayer(String name) {
+	public GameHumanPlayer(String name, HeartsGameState HGS) {
 		// set the name via the argument
-
-			this.name = name;
+		this.HeartsGS = HGS;
+		this.name = name;
 
 		
 		// mark game as not being over

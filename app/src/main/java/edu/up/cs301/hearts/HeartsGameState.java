@@ -177,6 +177,12 @@ public class HeartsGameState extends GameState {
         return Scores;
     }
 
+    public Table getTable(){
+        return table;
+    }
+
+    public
+
     /**
      * Changes the Current Player to the next player.
      */

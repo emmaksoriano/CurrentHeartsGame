@@ -7,6 +7,7 @@ import edu.up.cs301.game.actionMsg.ReadyAction;
 import edu.up.cs301.game.infoMsg.BindGameInfo;
 import edu.up.cs301.game.infoMsg.GameInfo;
 import edu.up.cs301.game.infoMsg.GameOverInfo;
+import edu.up.cs301.game.infoMsg.GameState;
 import edu.up.cs301.game.infoMsg.StartGameInfo;
 import edu.up.cs301.game.infoMsg.TimerInfo;
 import edu.up.cs301.game.util.GameTimer;
@@ -40,6 +41,7 @@ public abstract class GameComputerPlayer implements GamePlayer, Tickable {
 	private GameMainActivity myActivity; // the game's main activity, set only
 			// this game is connected to the GUI
 	private GameTimer myTimer = new GameTimer(this); // my timer
+	public HeartsGameState HeartsGS;
 	
 	/**
 	 * Returns this game's timer.
@@ -78,8 +80,9 @@ public abstract class GameComputerPlayer implements GamePlayer, Tickable {
 	 * @param name
 	 * 			the player's name (e.g., "John")
 	 */
-	public GameComputerPlayer(String name) {
+	public GameComputerPlayer(String name, HeartsGameState HGS) {
 		this.name = name;
+		this.HeartsGS = HGS;
 	}
 
 	/**
