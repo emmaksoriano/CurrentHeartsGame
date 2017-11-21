@@ -16,6 +16,7 @@ import android.util.Log;
  * @author Steven R. Vegdahl
  * @version July 2013
  */
+
 public class ProxyPlayer implements GamePlayer {
 
     String name;

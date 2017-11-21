@@ -44,6 +44,13 @@ public class HeartsHumanPlayer extends GameHumanPlayer implements Animator {
 
 
 
+    private  boolean [] cardLocationBool;
+
+    boolean drawMe=false;
+    boolean doubleTap=false;
+    Card cardToPlay;
+    boolean singleTap=false;
+
 
 
     //instance variables added from HeartsPlayer class
@@ -240,12 +247,13 @@ public class HeartsHumanPlayer extends GameHumanPlayer implements Animator {
      * @param g
      * 		the canvas on which we are to draw
      */
+
     public void tick(Canvas g) {
         // ignore if we have not yet received the game state
         if (state == null) return;
         //getCanvas(g);
 
-
+        CardDeck myDeck = state.getDeck(0);
 
         if (cardLocation==null&&cardLocationY==null&&humanCards==null) {
             c = state.getDeck(0).peekAtPlayerCard();// currently one of your own cards
@@ -253,6 +261,7 @@ public class HeartsHumanPlayer extends GameHumanPlayer implements Animator {
             cardLocation = new RectF[14];
             cardLocationY = new RectF[14];
             humanCards=new Card[14];
+            cardLocationBool = new boolean[14];
 
             System.out.println("touch squares havent been initalized  ");
 
@@ -266,7 +275,7 @@ public class HeartsHumanPlayer extends GameHumanPlayer implements Animator {
 
             for (int row = 1; row < 8; row++) {
                 for (int col = 1; col < 3; col++) {
-                    humanCards[count]=c;
+                    humanCards[count]=myDeck.get(count);
                     float rectRight = 210;
                     float rectTop = 1000;
                     float rectBottom = 1300;
@@ -362,23 +371,60 @@ public class HeartsHumanPlayer extends GameHumanPlayer implements Animator {
         drawCard(g, aI3cardPile, c);
 
 
-        Deck myDeck = state.getDeck(0);
 
         for(int i=0; i<Math.min(13,myDeck.size());i++) {
             //Log.i(" drawing card ",""+i);
-            drawCard(g, cardLocation[i], myDeck.get(i));
+            drawCard(g, cardLocation[i],humanCards[i] );//myDeck.get(i));
 
 
             //drawCardBacks(g,checkCardRect,checkCardRect,checkCardRect,3);
 
             //Log.i(" finished card draw ",""+i);
         }
+        if (doubleTap==true){
+            //draw selected card in played human spot
+            drawCard(g, HcardPile, selectedCard);
+            p = new Paint();
+            p.setColor(Color.YELLOW);
+            RectF temp = cardLocationY[count];
 
-        if (touchedQuestionMark==true){}
+            g.drawRect(cardLocationY[count], p);
+
+            cardLocationY[count]=temp;
+            cardLocationBool[count]=true;
 
 
+            //humanCards[count]=null;
+            drawMe=true;
+
+
+
+        }
+        if (count==14||count==12) {
+
+            p = new Paint();
+            p.setColor(Color.GREEN);
+            g.drawRect(cardLocationY[12], p);
+            drawCard(g, cardLocation[12],humanCards[12] );
+        }
+        for(int i=0; i<Math.min(13,myDeck.size());i++) {
+            if (cardLocationBool[i] == true) {
+                p = new Paint();
+                p.setColor(Color.GREEN);
+                g.drawRect(cardLocationY[i], p);
+            }
+        }
+/*
+		reset();
+		if (drawMe==true){
+			g.drawRect(cardLocationY[count], p);
+		}
+*/
     }
 
+    public void reset(){
+        doubleTap=false;
+    }
 
     /**
      * @return
@@ -482,31 +528,41 @@ public class HeartsHumanPlayer extends GameHumanPlayer implements Animator {
         RectF myTopCardLoc = thisPlayerTopCardLocation();
         RectF middleTopCardLoc = middlePileTopCardLocation();
         for (int n=0; n<=13; n++) {
-            //if (myTopCardLoc.contains(x, y)) {
-            // it's on my pile: we're playing a card: send action the game
-            // game.sendAction(new SJPlayAction(this));
-            //}
-            System.out.println("Im touching...   "+ x +", " +y);
-            System.out.println("im looking at card...    "+ cardLocation[n]);
-
             if (cardLocation[n].contains(x, y)) {
-                // it's on the middle pile: we're slapping a card: send
-                // action to the game
-                //game.sendAction(new SJSlapAction(this));
 
-                //surface.flash(Color.YELLOW, 500);
                 selectedCard=humanCards[n];
+                if (singleTap==false){
+                    selectedCard=humanCards[n];
+                    singleTap=true;
+                    doubleTap=false;
+                }else if (cardToPlay==selectedCard){
+                    //draw card to play in human table spot
+                    doubleTap=true;
+                    cardLocationBool[n]=true;
+                   // isLegalMove(cardToPlay);
+                    singleTap=false;
+                }
+                else{
+
+                    singleTap=true;
+                    selectedCard=humanCards[n];
+                    doubleTap=false;
+                }
+
+
+                cardToPlay=humanCards[n];
+
+
                 System.out.println("I've been touched!   " + cardLocation[n]);
                 RectF touched = cardLocation[n];
                 count =n;
-                highlightCard(touched, count);
-                touchedQuestionMark=true;
+                //highlightCard(touched, count);
 
 
             }
             //else {
-            // illegal touch-location: flash for 1/20 second
-            // surface.flash(Color.RED, 50);
+            //illegal touch-location: flash for 1/20 second
+            //	surface.flash(Color.RED, 50);
             //}
         }
     }

@@ -18,6 +18,7 @@ import edu.up.cs301.card.Card;
 
 public class CardDeck implements Serializable {
 
+    int currCard=0;
     // to satisfy Serializable interface
     private static final long serialVersionUID = 7216223171210121485L;
 
@@ -49,6 +50,13 @@ public class CardDeck implements Serializable {
         }
     }
 
+    public Card get(int i) {
+        // synchronize so that the underlying ArrayList is not accessed
+        // inconsistently
+        synchronized(this.cards) {
+            return cards.get(i);
+        }
+    }
     /**
      * adds one of each card, increasing the size of the deck by 52. Cards are added
      * spades first (King to Ace), then similarly with hearts, diamonds and clubs.
@@ -85,6 +93,10 @@ public class CardDeck implements Serializable {
 
         // return the deck
         return this;
+    }
+
+    public boolean containsCard(Card c) {
+        return cards.contains(c);
     }
 
     /**
@@ -207,6 +219,38 @@ public class CardDeck implements Serializable {
             if (cards.isEmpty()) return null;
             return cards.get(cards.size() - 1);
         }
+    }
+
+    public Card cardAt(int n) {
+        return cards.get(n);
+    }
+
+    public Card peekAtPlayerCard() {
+        //System.out.println("in peekCard ");
+        synchronized (this.cards) {
+            //System.out.println("in synchronized card ");
+            if (cards.isEmpty()) {
+                //System.out.println("deck is empty");
+                return null;
+            }
+
+            else {
+                //System.out.println("values in card array:  " + cards.get(currCard));
+                currCard = 0;
+                for (int i = 0; i <= cards.size(); i++) {
+                    //System.out.println("card size:   " + cards.size());
+                    //System.out.println("curr card value:  " + cards.get(currCard));
+                    if (i<0) currCard=0;
+                    else if(i==0||i==1) currCard=0;
+                    else {
+                        Card curr = cards.get(i);
+                        currCard++;
+                        return curr;
+                    }
+                }
+            }
+        }
+        return cards.get(0);
     }
 
     /**

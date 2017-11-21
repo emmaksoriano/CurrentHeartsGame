@@ -45,7 +45,8 @@ public class HeartsLocalGame extends LocalGame {
         }
         // if not, check if they have a card of that suit,
         else{
-           for (Card c : currentGame.players[currentGame.toPlay].hand.cards){
+            for (int i = 0; i < currentGame.piles[currentGame.toPlay].size(); i++) {
+                Card c = currentGame.piles[currentGame.toPlay].cardAt(i);
                if(c.getSuit().equals(currentGame.table.cardsPlayed[0].getSuit())){
                    valid = false;
                }
@@ -60,7 +61,8 @@ public class HeartsLocalGame extends LocalGame {
      *
      */
     public boolean validTurn(GamePlayer player){
-        if(currentGame.players[currentGame.toPlay].equals(player)) {
+        int idx = this.getPlayerIdx(player);
+        if(idx == currentGame.toPlay) {
             return true;
         }
         else{
@@ -68,12 +70,12 @@ public class HeartsLocalGame extends LocalGame {
         }
     }
 
-    /**
-     * checks who's turn it is to play a card
-     */
-    public GamePlayer checkTurn(){
-        return currentGame.players[currentGame.toPlay];
-    }
+//    /**
+//     * checks who's turn it is to play a card
+//     */
+//    public GamePlayer checkTurn(){
+//        return currentGame.players[currentGame.toPlay];
+//    }
 
     /**
      *   The winRound method determines which player won the round
@@ -94,11 +96,17 @@ public class HeartsLocalGame extends LocalGame {
 
         //find which player played that card
         Card winningCard = new Card(highestFace,suit);
-        for(GamePlayer p: currentGame.players){
-            if(p.checkIfCardInHand(winningCard)){
-                p.setIsWinner(true);
+        for (int i = 0; i < players.length; i++) {
+            if (currentGame.piles[i].containsCard(winningCard)) {
+                currentGame.toPlay = i;
             }
         }
+//        for(GamePlayer p: currentGame.players){
+//
+//            if(p.checkIfCardInHand(winningCard)){
+//                p.setIsWinner(true);
+//            }
+//        }
 
     }
 
@@ -162,7 +170,7 @@ public class HeartsLocalGame extends LocalGame {
 
     public void updateScore(){
         int points = calculatePoints();
-        for(int i = 0; i<currentGame.players.length; i++){
+        for(int i = 0; i<players.length; i++){
             //if(currentGame.players[i].isWinner == true){
             //    currentGame.players[i].setScore(points);
             //}
