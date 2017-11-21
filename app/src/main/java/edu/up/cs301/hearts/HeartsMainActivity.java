@@ -45,11 +45,11 @@ public class HeartsMainActivity extends GameMainActivity {
             }
         });
         */
-        playerTypes.add(new GamePlayerType("computer player (slow)") {
-            public GamePlayer createPlayer(String name) {
-                return new HardAI(name);
-            }
-        });
+        //playerTypes.add(new GamePlayerType("computer player (slow)") {
+           // public GamePlayer createPlayer(String name) {
+               // return new HardAI(name);
+           // }
+      //  });
 
         // Create a game configuration class for Hearts
         GameConfig defaultConfig = new GameConfig(playerTypes, 4, 4, "Hearts", PORT_NUMBER);

@@ -12,7 +12,7 @@ import edu.up.cs301.game.infoMsg.GameInfo;
 /**
  * Updated by S. Seydlitz on 11/17/17
  */
-
+/*
 public class EasyAI extends GameComputerPlayer {
 
     public EasyAI(String playerName) {
@@ -126,6 +126,7 @@ public class EasyAI extends GameComputerPlayer {
      * Set hand to given list of cards
      * @param initHand - shouldn't be more then
      */
+/*
     public void setHand(Card[] initHand){
         int i;
         for (i = 0; i < initHand.length; i++){
@@ -163,6 +164,7 @@ public class EasyAI extends GameComputerPlayer {
 
 
     */
+/*
     public boolean checkIfCardinHand(Card card){
         for(Card c: currentHand.cards){
             if(c.equals(card)){
@@ -181,4 +183,4 @@ public class EasyAI extends GameComputerPlayer {
         return false;
     }
 }
-
+*/

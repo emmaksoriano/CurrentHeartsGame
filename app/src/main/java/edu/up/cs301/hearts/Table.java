@@ -22,7 +22,7 @@ public class Table {
 
     }
 
-    public void addCard(Card card){
+    public void addCard(Card card, GamePlayer GP){
         for(int i=0; i<4; i++){
             if(cardsPlayed[i] == null){
                 cardsPlayed[i]=card;

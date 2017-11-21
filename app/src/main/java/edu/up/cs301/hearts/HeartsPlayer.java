@@ -15,7 +15,7 @@ import edu.up.cs301.game.GamePlayer;
 public class HeartsPlayer {
 
     public CardDeck hand;
-    public Card[] collection;
+    public CardDeck collection;
     public Card[] myPass = new Card[3];
     public boolean myTurn = false;
     public boolean isWinner = false;
@@ -79,7 +79,6 @@ public class HeartsPlayer {
             hand.add(c);
             initHand.removeTopCard();
         }
-        collection = (Card[]) hand.cards.toArray();
     }
 
     public void setName(String initName){

@@ -10,7 +10,6 @@ import edu.up.cs301.card.Suit;
 import edu.up.cs301.game.Game;
 import edu.up.cs301.game.GamePlayer;
 import edu.up.cs301.game.infoMsg.GameState;
-import edu.up.cs301.slapjack.Deck;
 
 /**
  * Created by emmasoriano on 10/23/17.
@@ -38,27 +37,13 @@ public class HeartsGameState extends GameState {
     private static final long serialVersionUID = -8269749892027578792L;
 
     /*
-public class HeartsGameState extends GameState {
-
-    // Declare Instance Variables
-    public String userName;
-    public GamePlayer[] players = new GamePlayer[4];
-    public GamePlayer currentPlayer;
-    public GamePlayer nextPlayer;
-    public CardDeck deck;
-    public int playerIndex;
-    public int difficulty;
-    public int[] currentScores;
-    public int currentSuit;
-
-
     /**
      * HeartsGameState Constructor
      * @param d
      * @param user
      */
 
-    // public GamePlayer[] players = new GamePlayer[4];
+    public GamePlayer[] players = new GamePlayer[4];
     public Table table;
     private int[] Scores = new int[4];
     public boolean GameOver = false;
@@ -85,15 +70,12 @@ public class HeartsGameState extends GameState {
     // whose turn is it to turn a card?
     public int toPlay;
 
-
     /**
      * Constructor for objects of class HeartsGameState. Initializes for the beginning of the
      * game, with a random player as the first to turn card
      */
     public HeartsGameState() {
         // randomly pick the player who starts
-        toPlay = (int) (4 * Math.random());
-        //toPlay = 0;
         //toPlay = (int)(2*Math.random());
         toPlay = hasTwoOfClubs();
 
@@ -110,15 +92,15 @@ public class HeartsGameState extends GameState {
         piles[toPlay].shuffle(); // shuffle the cards
         // move cards to opponent, until to piles have ~same size
         int counter = 0;
-        int i = 0;
-        do {
-            if (counter == 13) {
-                counter = 0;
+        int i=0;
+        do{
+            if(counter==13){
+                counter=0;
                 i++;
             }
             piles[toPlay].moveTopCardTo(piles[i]);
             counter++;
-        } while (counter <= 4);
+        }while(counter<=4);
     }
 
     /**
@@ -140,43 +122,72 @@ public class HeartsGameState extends GameState {
 
     /**
      * Set AI difficulty
-     *
-     * @param difficulty - 0 : EasyAI
-     *                   - 1 : HardAI
+     * @param difficulty
+     *  - 0 : EasyAI
+     *  - 1 : HardAI
      */
-    public void setDifficulty(int difficulty) {
-        if ((difficulty == 0) || (difficulty == 1)) {
+    public void setDifficulty(int difficulty){
+        if((difficulty == 0)||(difficulty == 1)){
             this.Difficulty = difficulty;
-        } else {
+        }
+        else{
             return;
         }
     }
 
     /**
      * Set Current Player
-     *
      * @param index
      */
-    public void setCurrentPlayer(int index) {
-        if ((index >= 0) && (index <= 3)) {
-//            CurrentPlayer = players[index];
+    public void setCurrentPlayer(int index){
+        if((index >= 0)&&(index <= 3)){
+            CurrentPlayer = players[index];
             CurrentPlayerIndex = index;
-            return;
-        } else {
-            return;
+
         }
+    }
+
+    /**
+     * Set Game Over
+     * @param b
+     */
+    public void setGameOver(boolean b){
+        GameOver = b;
+    }
+
+    /**
+     * Set Trick
+     */
+    public void setTrick(int trick){
+        Trick = trick;
+    }
+
+    /**
+     * change whose move it is
+     *
+     * @param idx the index of the player whose move it now is
+     */
+    public void setToPlay(int idx) {
+        toPlay = idx;
+    }
+
+    public int getDifficulty(){return Difficulty;}
+
+    public int[] getScores(){
+        return Scores;
     }
 
     /**
      * Changes the Current Player to the next player.
      */
-    public void NextTurn() {
-        if (CurrentPlayerIndex == 3) {
-//            CurrentPlayer = players[0];
+    public void NextTurn(){
+        if(CurrentPlayerIndex == 3){
+            CurrentPlayer = players[0];
             CurrentPlayerIndex = 0;
-        } else {
+        }
+        else {
             CurrentPlayerIndex++;
-//            CurrentPlayer = players[CurrentPlayerIndex];
+            CurrentPlayer = players[CurrentPlayerIndex];
         }
     }
 
@@ -201,29 +212,21 @@ public class HeartsGameState extends GameState {
     }
 
     /**
-     * change whose move it is
      *
-     * @param idx the index of the player whose move it now is
+     * @return
      */
-    public void setToPlay(int idx) {
-        toPlay = idx;
-    }
-
-    public int hasTwoOfClubs() {
+    public int hasTwoOfClubs(){
         Card twoClubs = new Card(Rank.TWO, Suit.Club);
         int num = 0;
-
-        for (int i = 0; i < CurrentPlayerIndex; i++) {
-            //if(index[i].checkIfCardInHand(twoClubs)){
-            //    num= i;
-            // }
+        for(int i = 0; i<players.length;i++){
+            //if(players[i].checkIfCardInHand(twoClubs)){
+                //num= i;
+            //}
         }
         return num;
     }
+
 }
-
-
-
 
     /**
      * Replaces all cards with null, except for the top card of deck 2

@@ -9,7 +9,7 @@ import edu.up.cs301.game.infoMsg.GameInfo;
 /**
  * Updated by S. Seydlitz on 11/19/17
  */
-
+/*
 public class HardAI extends GameComputerPlayer {
 
     public HardAI(String playerName) {
@@ -84,3 +84,4 @@ public class HardAI extends GameComputerPlayer {
         }
     }
 }
+*/
