@@ -23,8 +23,8 @@ public class EasyAI extends GameComputerPlayer {
 
     }
 
-    String thisGuy = currentPlayer.getName();
-    CardDeck currentHand = new CardDeck(thisGuy.getHand); //THIS!!!
+    GamePlayer thisGuy = HeartsGameState.getCurrentPlayer();
+    CardDeck currentHand = new CardDeck(thisGuy.hand); //THIS!!!
     HeartsGameState thisTime;
     Suit baseSuit = thisTime.getCurrentSuit(); //THIS!
     //boolean heartsPlayed = false;
