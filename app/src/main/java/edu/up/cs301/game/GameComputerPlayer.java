@@ -80,9 +80,8 @@ public abstract class GameComputerPlayer implements GamePlayer, Tickable {
 	 * @param name
 	 * 			the player's name (e.g., "John")
 	 */
-	public GameComputerPlayer(String name, HeartsGameState HGS) {
+	public GameComputerPlayer(String name) {
 		this.name = name;
-		this.HeartsGS = HGS;
 	}
 
 	/**

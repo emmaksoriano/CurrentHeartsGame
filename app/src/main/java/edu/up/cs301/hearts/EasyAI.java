@@ -11,12 +11,12 @@ import edu.up.cs301.game.infoMsg.GameInfo;
 
 /**
  * Updated by S. Seydlitz on 11/17/17
- */
+
 
 public class EasyAI extends GameComputerPlayer {
 
-    public EasyAI(String playerName, HeartsGameState HGS) {
-        super(playerName, HGS);
+    public EasyAI(String playerName) {
+        super(playerName);
     }
 
     protected void receiveInfo(GameInfo info) {
@@ -123,8 +123,7 @@ public class EasyAI extends GameComputerPlayer {
         isWinner= initWinner;
     }
 
-    /*
-    /**
+
      * Set hand to given list of cards
      * @param initHand - shouldn't be more then
 
@@ -149,7 +148,7 @@ public class EasyAI extends GameComputerPlayer {
         myTurn = initMyTurn;
     }
 
-    /*
+
     public void threeCardPass(Card[] pass, HeartsPlayer p){
         //pass cards to appropriate player
         p.setHand(pass);
@@ -165,7 +164,7 @@ public class EasyAI extends GameComputerPlayer {
     }
 
 
-    */
+
 
     public boolean checkIfCardinHand(Card card){
         for(Card c: currentHand.cards){
@@ -185,3 +184,4 @@ public class EasyAI extends GameComputerPlayer {
         return false;
     }
 }
+ */

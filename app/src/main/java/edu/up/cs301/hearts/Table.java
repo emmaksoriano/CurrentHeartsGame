@@ -11,7 +11,7 @@ import edu.up.cs301.game.GamePlayer;
 public class Table {
 
     public Card[] cardsPlayed = new Card[4];
-    public Suit SuitIndex;
+    public Suit suit;
 
     //Constructor
     public Table(){
@@ -27,7 +27,7 @@ public class Table {
             if(cardsPlayed[i] == null){
                 cardsPlayed[i]=card;
                 if(i == 0){
-                    SuitIndex = card.getSuit();
+                    suit = card.getSuit();
                 }
                 break;
             }
@@ -39,7 +39,28 @@ public class Table {
     }
 
     public Suit getSuitIndex(){
-        return SuitIndex;
+        return suit;
+    }
+
+    /**
+     * Finds Highest Card and returns it
+     * @return
+     */
+    public Card getHighestCard() {
+        Card rtrnCard = cardsPlayed[0];
+        int i;
+        int tempInt;
+        int currentHighestRank = cardsPlayed[0].getIntValue();
+        for(i = 0; i < cardsPlayed.length; i++){
+            if(cardsPlayed[i].getSuit().equals(suit)){
+                 tempInt = cardsPlayed[i].getIntValue();
+                if((currentHighestRank < tempInt)&&(!(cardsPlayed[i].equals(rtrnCard)))){
+                    rtrnCard = cardsPlayed[i];
+                    currentHighestRank = cardsPlayed[i].getIntValue();
+                }
+            }
+        }
+        return rtrnCard;
     }
 
     public void clearTable(){

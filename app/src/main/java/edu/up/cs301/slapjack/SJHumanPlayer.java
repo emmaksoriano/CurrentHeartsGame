@@ -18,6 +18,7 @@ import edu.up.cs301.game.infoMsg.GameInfo;
 import edu.up.cs301.game.infoMsg.GameState;
 import edu.up.cs301.game.infoMsg.IllegalMoveInfo;
 import edu.up.cs301.game.infoMsg.NotYourTurnInfo;
+import edu.up.cs301.hearts.HeartsGameState;
 
 /**
  * A GUI that allows a human to play Slapjack. Moves are made by clicking

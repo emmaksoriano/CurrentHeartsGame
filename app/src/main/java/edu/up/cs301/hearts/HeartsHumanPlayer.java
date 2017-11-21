@@ -103,9 +103,11 @@ public class HeartsHumanPlayer extends GameHumanPlayer implements Animator {
     private int backgroundColor;
 
     public boolean checkIfCardinHand(Card card){
-        for(Card c: hand.cards){
-            if(c.equals(card)){
-                return true;
+        if((card != null)&&(hand != null)){
+            for(Card c: hand.cards){
+                if(c.equals(card)){
+                    return true;
+                }
             }
         }
         return false;
@@ -527,39 +529,42 @@ public class HeartsHumanPlayer extends GameHumanPlayer implements Animator {
         // the player's pile or the middle pile
         RectF myTopCardLoc = thisPlayerTopCardLocation();
         RectF middleTopCardLoc = middlePileTopCardLocation();
-        for (int n=0; n<=13; n++) {
-            if (cardLocation[n].contains(x, y)) {
+        if(cardLocation != null){
+            for (int n=0; n<=13; n++) {
+                if (cardLocation[n].contains(x, y)) {
 
-                selectedCard=humanCards[n];
-                if (singleTap==false){
                     selectedCard=humanCards[n];
-                    singleTap=true;
-                    doubleTap=false;
-                }else if (cardToPlay==selectedCard){
-                    //draw card to play in human table spot
-                    doubleTap=true;
-                    cardLocationBool[n]=true;
-                   // isLegalMove(cardToPlay);
-                    singleTap=false;
+                    if (singleTap==false){
+                        selectedCard=humanCards[n];
+                        singleTap=true;
+                        doubleTap=false;
+                    }else if (cardToPlay==selectedCard){
+                        //draw card to play in human table spot
+                        doubleTap=true;
+                        cardLocationBool[n]=true;
+                        // isLegalMove(cardToPlay);
+                        singleTap=false;
+                    }
+                    else{
+
+                        singleTap=true;
+                        selectedCard=humanCards[n];
+                        doubleTap=false;
+                    }
+
+
+                    cardToPlay=humanCards[n];
+
+
+                    System.out.println("I've been touched!   " + cardLocation[n]);
+                    RectF touched = cardLocation[n];
+                    count =n;
+                    //highlightCard(touched, count);
+
+
                 }
-                else{
-
-                    singleTap=true;
-                    selectedCard=humanCards[n];
-                    doubleTap=false;
-                }
-
-
-                cardToPlay=humanCards[n];
-
-
-                System.out.println("I've been touched!   " + cardLocation[n]);
-                RectF touched = cardLocation[n];
-                count =n;
-                //highlightCard(touched, count);
-
-
             }
+
             //else {
             //illegal touch-location: flash for 1/20 second
             //	surface.flash(Color.RED, 50);

@@ -89,6 +89,39 @@ public class Card implements Serializable {
         return r==null || s == null ? null : new Card(r, s);
     }
 
+    public int getIntValue(){
+		switch (this.rank){
+			case ACE:
+				return 14;
+			case TWO:
+				return 2;
+			case THREE:
+				return 3;
+			case FOUR:
+				return 4;
+			case FIVE:
+				return 5;
+			case SIX:
+				return 6;
+			case SEVEN:
+				return 7;
+			case EIGHT:
+				return 8;
+			case NINE:
+				return 9;
+			case TEN:
+				return 10;
+			case JACK:
+				return 11;
+			case QUEEN:
+				return 12;
+			case KING:
+				return 13;
+
+		}
+		return 0;
+	}
+
     /**
      * Produces a textual description of a HeartsCard.
      *

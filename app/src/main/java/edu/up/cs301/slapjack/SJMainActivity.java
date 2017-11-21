@@ -36,6 +36,7 @@ public class SJMainActivity extends GameMainActivity {
 				return new SJHumanPlayer(name, Color.YELLOW);
 			}
 		});
+		/**
 		playerTypes.add(new GamePlayerType("computer player (normal)") {
 			public GamePlayer createPlayer(String name) {
 				return new SJComputerPlayer(name);
@@ -61,6 +62,7 @@ public class SJMainActivity extends GameMainActivity {
 				return new SJComputerPlayer(name, 3.5);
 			}
 		});
+		 */
 
 		// Create a game configuration class for SlapJack
 		GameConfig defaultConfig = new GameConfig(playerTypes, 2, 2, "SlapJack", PORT_NUMBER);
