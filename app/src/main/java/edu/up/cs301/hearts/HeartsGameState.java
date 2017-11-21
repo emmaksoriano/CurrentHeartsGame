@@ -10,7 +10,6 @@ import edu.up.cs301.card.Suit;
 import edu.up.cs301.game.Game;
 import edu.up.cs301.game.GamePlayer;
 import edu.up.cs301.game.infoMsg.GameState;
-import edu.up.cs301.slapjack.Deck;
 
 /**
  * Created by emmasoriano on 10/23/17.
@@ -38,20 +37,6 @@ public class HeartsGameState extends GameState {
     private static final long serialVersionUID = -8269749892027578792L;
 
     /*
-public class HeartsGameState extends GameState {
-
-    // Declare Instance Variables
-    public String userName;
-    public GamePlayer[] players = new GamePlayer[4];
-    public GamePlayer currentPlayer;
-    public GamePlayer nextPlayer;
-    public CardDeck deck;
-    public int playerIndex;
-    public int difficulty;
-    public int[] currentScores;
-    public int currentSuit;
-
-
     /**
      * HeartsGameState Constructor
      * @param d
@@ -80,7 +65,7 @@ public class HeartsGameState extends GameState {
     //  - 4: the "up" pile, where the top card
     // Note that when players receive the state, all but the top card in all piles
     // are passed as null.
-    public Deck[] piles;
+    public CardDeck[] piles;
 
     // whose turn is it to turn a card?
     public int toPlay;
@@ -98,11 +83,11 @@ public class HeartsGameState extends GameState {
         // - each player deck (#0 and #1) gets half the cards, randomly
         //   selected
         // - the middle deck (#2) is empty
-        piles = new Deck[4];
-        piles[0] = new Deck(); // create empty deck
-        piles[1] = new Deck(); // create empty deck
-        piles[2] = new Deck(); // create empty deck
-        piles[3] = new Deck(); // create empty deck
+        piles = new CardDeck[4];
+        piles[0] = new CardDeck(); // create empty deck
+        piles[1] = new CardDeck(); // create empty deck
+        piles[2] = new CardDeck(); // create empty deck
+        piles[3] = new CardDeck(); // create empty deck
         piles[toPlay].add52(); // give all cards to player whose turn it is, in order
         piles[toPlay].shuffle(); // shuffle the cards
         // move cards to opponent, until to piles have ~same size
@@ -127,11 +112,11 @@ public class HeartsGameState extends GameState {
         // set index of player whose turn it is
         toPlay = orig.toPlay;
         // create new deck array, making copy of each deck
-        piles = new Deck[4];
-        piles[0] = new Deck(orig.piles[0]);
-        piles[1] = new Deck(orig.piles[1]);
-        piles[2] = new Deck(orig.piles[2]);
-        piles[3] = new Deck(orig.piles[3]);
+        piles = new CardDeck[4];
+        piles[0] = new CardDeck(orig.piles[0]);
+        piles[1] = new CardDeck(orig.piles[1]);
+        piles[2] = new CardDeck(orig.piles[2]);
+        piles[3] = new CardDeck(orig.piles[3]);
 
     }
 
@@ -158,10 +143,7 @@ public class HeartsGameState extends GameState {
         if((index >= 0)&&(index <= 3)){
             CurrentPlayer = players[index];
             CurrentPlayerIndex = index;
-            return;
-        }
-        else {
-            return;
+
         }
     }
 
@@ -185,7 +167,7 @@ public class HeartsGameState extends GameState {
      * @return the deck for the given player, or the middle deck if the
      * index is 2
      */
-    public Deck getDeck(int num) {
+    public CardDeck getDeck(int num) {
         if (num < 0 || num > 3) return null;
         return piles[num];
     }
@@ -220,7 +202,6 @@ public class HeartsGameState extends GameState {
     }
 
 }
-
 
     /**
      * Replaces all cards with null, except for the top card of deck 2

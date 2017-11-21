@@ -1,6 +1,8 @@
 package edu.up.cs301.hearts;
 
 /**
+ *
+ * NOT USING RIGHT NOW!!!! USE VEGDAHLS CARDS!!!!!
  * Created by emmasoriano on 11/6/17.
  */
 

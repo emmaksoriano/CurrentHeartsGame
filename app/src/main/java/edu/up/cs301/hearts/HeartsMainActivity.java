@@ -8,12 +8,11 @@ import edu.up.cs301.game.GamePlayer;
 import edu.up.cs301.game.LocalGame;
 import edu.up.cs301.game.config.GameConfig;
 import edu.up.cs301.game.config.GamePlayerType;
-import edu.up.cs301.slapjack.SJComputerPlayer;
 
 import android.graphics.Color;
 
 /**
- * this is the primary activity for Slapjack game
+ * this is the primary activity for Hearts game
  *
  * @author Steven R. Vegdahl
  * @version July 2013
@@ -29,21 +28,24 @@ public class HeartsMainActivity extends GameMainActivity {
         // Define the allowed player types
         ArrayList<GamePlayerType> playerTypes = new ArrayList<GamePlayerType>();
 
-        playerTypes.add(new GamePlayerType("human player (green)") {
+
+        playerTypes.add(new GamePlayerType("human player") {
             public GamePlayer createPlayer(String name) {
                 return new HeartsHumanPlayer(name);
             }});
+        /*
         playerTypes.add(new GamePlayerType("human player (yellow)") {
             public GamePlayer createPlayer(String name) {
                 return new HeartsHumanPlayer(name);
             }
         });
+        */
         playerTypes.add(new GamePlayerType("computer player (easy)") {
             public GamePlayer createPlayer(String name) {
                 return new EasyAI(name);
             }
         });
-        playerTypes.add(new GamePlayerType("computer player (slow)") {
+        playerTypes.add(new GamePlayerType("computer player (hard)") {
             public GamePlayer createPlayer(String name) {
                 return new HardAI(name);
             }
