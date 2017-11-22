@@ -55,7 +55,6 @@ public class EasyAI extends GameComputerPlayer implements Animator {
         super(playerName);
     }
 
-
     public void setAsGui(GameMainActivity activity) {
 
         // remember the activity
@@ -79,6 +78,7 @@ public class EasyAI extends GameComputerPlayer implements Animator {
         }
 
     }
+
     public void receiveInfo(GameInfo info) {
         Log.i("HeartsComputerPlayer", "receiving updated state ("+info.getClass()+")");
         if (info instanceof IllegalMoveInfo || info instanceof NotYourTurnInfo) {
@@ -101,8 +101,6 @@ public class EasyAI extends GameComputerPlayer implements Animator {
         //I need the current player so I can call their hand!!!!!!
         currentHand = new CardDeck(state.piles[ind]);
     }
-
-
 
     public void strategy() {
 
@@ -166,7 +164,6 @@ public class EasyAI extends GameComputerPlayer implements Animator {
         return myPass;
     }
 
-
     public Card[] getHand(){
         return (Card[]) currentHand.cards.toArray();
     }
@@ -186,6 +183,7 @@ public class EasyAI extends GameComputerPlayer implements Animator {
     public void setMyPass(Card[] cards){
         myPass = cards;
     }
+
     public void setIsWinner(boolean initWinner){
         isWinner= initWinner;
     }
