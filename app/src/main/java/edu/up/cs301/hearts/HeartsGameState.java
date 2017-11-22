@@ -52,6 +52,8 @@ public class HeartsGameState extends GameState {
     public GamePlayer CurrentPlayer;
     public int CurrentPlayerIndex;
 
+
+
     // Chosen difficulty
     //  - 0: EasyAIxxx
     //  - 1: HardAI

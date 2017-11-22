@@ -1,30 +1,62 @@
 package edu.up.cs301.hearts;
 
+import android.app.Activity;
+import android.graphics.Color;
+import android.util.Log;
+
 import java.util.Random;
 
+import edu.up.cs301.animation.AnimationSurface;
 import edu.up.cs301.card.Card;
 import edu.up.cs301.card.Rank;
 import edu.up.cs301.card.Suit;
 import edu.up.cs301.game.GameComputerPlayer;
 import edu.up.cs301.game.GamePlayer;
 import edu.up.cs301.game.infoMsg.GameInfo;
+import edu.up.cs301.game.infoMsg.IllegalMoveInfo;
+import edu.up.cs301.game.infoMsg.NotYourTurnInfo;
 
 /**
  * Updated by S. Seydlitz on 11/17/17
  */
 
 public class EasyAI extends GameComputerPlayer {
+    // our game state
+    protected HeartsGameState state;
+
+    // our activity
+    private Activity myActivity;
+
+    // the amination surface
+    private AnimationSurface surface;
+
 
     public EasyAI(String playerName) {
         super(playerName);
     }
 
-    protected void receiveInfo(GameInfo info) {
-
+    public void receiveInfo(GameInfo info) {
+        Log.i("HeartsComputerPlayer", "receiving updated state ("+info.getClass()+")");
+        if (info instanceof IllegalMoveInfo || info instanceof NotYourTurnInfo) {
+            // if we had an out-of-turn or illegal move, flash the screen
+            surface.flash(Color.RED, 50);
+        }
+        else if (!(info instanceof HeartsGameState)) {
+            // otherwise, if it's not a game-state message, ignore
+            return;
+        }
+        else {
+            // it's a game-state object: update the state. Since we have an animation
+            // going, there is no need to explicitly display anything. That will happen
+            // at the next animation-tick, which should occur within 1/20 of a second
+            this.state = (HeartsGameState)info;
+            Log.i("computer player", "receiving");
+        }
     }
 
-    int ind = HeartsGameState.CurrentPlayerIndex;
-    GamePlayer thisGuy = HeartsGameState.players[ind]; //This is causing so many problems
+    int ind = state.CurrentPlayerIndex;
+    GamePlayer thisGuy = state.players[ind]; //This is causing so many problems
+    //I need the current player so I can call their hand!!!!!!
     CardDeck currentHand = new CardDeck(thisGuy.hand);
     Table table = new Table();
     Suit baseSuit = table.getSuitIndex();

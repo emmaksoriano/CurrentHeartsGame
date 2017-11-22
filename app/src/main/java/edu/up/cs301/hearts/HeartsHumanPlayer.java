@@ -118,8 +118,8 @@ public class HeartsHumanPlayer extends GameHumanPlayer implements Animator {
      * @param name
      * 		the player's name
      */
-    public HeartsHumanPlayer(String name, HeartsGameState HGS){
-        super(name, HGS);
+    public HeartsHumanPlayer(String name){
+        super(name);
 
         //determines if player has the starting card
         Card twoOfClubs = new Card(Rank.TWO, Suit.Club);
