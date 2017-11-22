@@ -162,15 +162,6 @@ public class HeartsGameState extends GameState {
         Trick = trick;
     }
 
-    /**
-     * change whose move it is
-     *
-     * @param idx the index of the player whose move it now is
-     */
-    public void setToPlay(int idx) {
-        toPlay = idx;
-    }
-
     public int getDifficulty(){return Difficulty;}
 
     public int[] getScores(){
@@ -229,6 +220,17 @@ public class HeartsGameState extends GameState {
         }
         return num;
     }
+
+
+    /**
+     * change whose move it is
+     *
+     * @param idx the index of the player whose move it now is
+     */
+    public void setToPlay(int idx) {
+        toPlay = idx;
+    }
+
 
 }
 
