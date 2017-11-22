@@ -26,7 +26,7 @@ import edu.up.cs301.game.infoMsg.NotYourTurnInfo;
  * Updated by S. Seydlitz on 11/17/17
  */
 
-public class EasyAI extends GameComputerPlayer implements Animator {
+public class HardAI extends GameComputerPlayer implements Animator {
 
     //variables
     CardDeck currentHand;
@@ -51,7 +51,7 @@ public class EasyAI extends GameComputerPlayer implements Animator {
     private AnimationSurface surface;
 
 
-    public EasyAI(String playerName) {
+    public HardAI(String playerName) {
         super(playerName);
     }
 
