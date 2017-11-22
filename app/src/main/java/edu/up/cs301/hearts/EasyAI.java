@@ -1,17 +1,23 @@
 package edu.up.cs301.hearts;
 
 import android.app.Activity;
+import android.graphics.Canvas;
 import android.graphics.Color;
 import android.util.Log;
+import android.view.MotionEvent;
+import android.view.View;
 
 import java.util.Random;
 
 import edu.up.cs301.animation.AnimationSurface;
+import edu.up.cs301.animation.Animator;
 import edu.up.cs301.card.Card;
 import edu.up.cs301.card.Rank;
 import edu.up.cs301.card.Suit;
 import edu.up.cs301.game.GameComputerPlayer;
+import edu.up.cs301.game.GameMainActivity;
 import edu.up.cs301.game.GamePlayer;
+import edu.up.cs301.game.R;
 import edu.up.cs301.game.infoMsg.GameInfo;
 import edu.up.cs301.game.infoMsg.IllegalMoveInfo;
 import edu.up.cs301.game.infoMsg.NotYourTurnInfo;
@@ -20,7 +26,7 @@ import edu.up.cs301.game.infoMsg.NotYourTurnInfo;
  * Updated by S. Seydlitz on 11/17/17
  */
 
-public class EasyAI extends GameComputerPlayer {
+public class EasyAI extends GameComputerPlayer implements Animator {
     // our game state
     protected HeartsGameState state;
 
@@ -51,6 +57,29 @@ public class EasyAI extends GameComputerPlayer {
             // at the next animation-tick, which should occur within 1/20 of a second
             this.state = (HeartsGameState)info;
             Log.i("computer player", "receiving");
+        }
+    }
+
+    public void setAsGui(GameMainActivity activity) {
+
+        // remember the activity
+        myActivity = activity;
+
+        // Load the layout resource for the new configuration
+        activity.setContentView(R.layout.sj_human_player);// change to hearts
+
+        // link the animator (this object) to the animation surface
+        surface = (AnimationSurface) myActivity
+                .findViewById(R.id.animation_surface);
+        surface.setAnimator(this);
+
+        // read in the card images
+        edu.up.cs301.card.Card.initImages(activity);
+
+        // if the state is not null, simulate having just received the state so that
+        // any state-related processing is done
+        if (state != null) {
+            receiveInfo(state);
         }
     }
 
@@ -200,6 +229,39 @@ public class EasyAI extends GameComputerPlayer {
 
     */
 
+    /**
+     * @return
+     * 		the amimation interval, in milliseconds
+     */
+    public int interval() {
+        // 1/20 of a second
+        return 50;
+    }
+
+    /**
+     * @return
+     * 		the background color
+     */
+    public int backgroundColor() {
+        return Color.GREEN;
+    }
+
+    /**
+     * @return
+     * 		whether the animation should be paused
+     */
+    public boolean doPause() {
+        return false;
+    }
+
+    /**
+     * @return
+     * 		whether the animation should be terminated
+     */
+    public boolean doQuit() {
+        return false;
+    }
+
     public boolean checkIfCardinHand(Card card){
         for(Card c: currentHand.cards){
             if(c.equals(card)){
@@ -217,4 +279,15 @@ public class EasyAI extends GameComputerPlayer {
         }
         return false;
     }
+
+    public void tick(Canvas g) {
+        // ignore if we have not yet received the game state
+        if (state == null) return;
+        //getCanvas(g);
+    }
+
+    public void onTouch(MotionEvent me){
+
+    }
+
 }
