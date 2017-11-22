@@ -27,6 +27,19 @@ import edu.up.cs301.game.infoMsg.NotYourTurnInfo;
  */
 
 public class EasyAI extends GameComputerPlayer implements Animator {
+
+    CardDeck currentHand;
+    Table table = new Table();
+    Suit baseSuit = table.getSuitIndex();
+    //boolean heartsPlayed = false;
+    Card chosenCard;
+    Card[] collection;
+    Card[] myPass = new Card[3];
+    boolean myTurn = false;
+    boolean isWinner = false;
+    boolean hasTwoOfClubs = false;
+    int score = 0;
+    String name;
     // our game state
     protected HeartsGameState state;
 
@@ -41,24 +54,6 @@ public class EasyAI extends GameComputerPlayer implements Animator {
         super(playerName);
     }
 
-    public void receiveInfo(GameInfo info) {
-        Log.i("HeartsComputerPlayer", "receiving updated state ("+info.getClass()+")");
-        if (info instanceof IllegalMoveInfo || info instanceof NotYourTurnInfo) {
-            // if we had an out-of-turn or illegal move, flash the screen
-            surface.flash(Color.RED, 50);
-        }
-        else if (!(info instanceof HeartsGameState)) {
-            // otherwise, if it's not a game-state message, ignore
-            return;
-        }
-        else {
-            // it's a game-state object: update the state. Since we have an animation
-            // going, there is no need to explicitly display anything. That will happen
-            // at the next animation-tick, which should occur within 1/20 of a second
-            this.state = (HeartsGameState)info;
-            Log.i("computer player", "receiving");
-        }
-    }
 
     public void setAsGui(GameMainActivity activity) {
 
@@ -81,23 +76,32 @@ public class EasyAI extends GameComputerPlayer implements Animator {
         if (state != null) {
             receiveInfo(state);
         }
+
+    }
+    public void receiveInfo(GameInfo info) {
+        Log.i("HeartsComputerPlayer", "receiving updated state ("+info.getClass()+")");
+        if (info instanceof IllegalMoveInfo || info instanceof NotYourTurnInfo) {
+            // if we had an out-of-turn or illegal move, flash the screen
+            surface.flash(Color.RED, 50);
+        }
+        else if (!(info instanceof HeartsGameState)) {
+            // otherwise, if it's not a game-state message, ignore
+            return;
+        }
+        else {
+            // it's a game-state object: update the state. Since we have an animation
+            // going, there is no need to explicitly display anything. That will happen
+            // at the next animation-tick, which should occur within 1/20 of a second
+            this.state = (HeartsGameState)info;
+            Log.i("computer player", "receiving");
+        }
+
+        int ind = state.CurrentPlayerIndex;
+        //I need the current player so I can call their hand!!!!!!
+        currentHand = new CardDeck(state.piles[ind]);
     }
 
-    int ind = state.CurrentPlayerIndex;
-    GamePlayer thisGuy = state.players[ind]; //This is causing so many problems
-    //I need the current player so I can call their hand!!!!!!
-    CardDeck currentHand = new CardDeck(thisGuy.hand);
-    Table table = new Table();
-    Suit baseSuit = table.getSuitIndex();
-    //boolean heartsPlayed = false;
-    Card chosenCard;
-    Card[] collection;
-    Card[] myPass = new Card[3];
-    boolean myTurn = false;
-    boolean isWinner = false;
-    boolean hasTwoOfClubs = false;
-    int score = 0;
-    String name;
+
 
     public void strategy() {
 
@@ -287,7 +291,6 @@ public class EasyAI extends GameComputerPlayer implements Animator {
     }
 
     public void onTouch(MotionEvent me){
-
     }
 
 }

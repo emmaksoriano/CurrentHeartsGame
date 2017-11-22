@@ -3,21 +3,30 @@
 
     <item
         is-multidex="true"
-        jar="/Users/emmasoriano/Desktop/JUNIOR YEAR/CS301/CurrentHeartsGame3/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jar="C:\Users\sarah\AndroidStudioProjects\CurrentHeartsGame\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="0eb4762ea9751bc48ad13b8c4fa094745abdc9d5">
+        <dex dex="C:\Users\sarah\AndroidStudioProjects\CurrentHeartsGame\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_9c3b12e244275e60b301397290185d855da386cb\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\sarah\AndroidStudioProjects\CurrentHeartsGame\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
         sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
-        <dex dex="/Users/emmasoriano/Desktop/JUNIOR YEAR/CS301/CurrentHeartsGame3/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_db03268cc7380262281a9a6509981cd66489f9bf/classes.dex" />
+        <dex dex="C:\Users\sarah\AndroidStudioProjects\CurrentHeartsGame\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_4fc0cefc2852b9ef6eeac0afa0a097ad2939ebe1\classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/Users/emmasoriano/Desktop/JUNIOR YEAR/CS301/CurrentHeartsGame3/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jar="C:\Users\sarah\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-v4\18.0.0\support-v4-18.0.0.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
-        sha1="2808b3256ad4eeeef30e8d8e6aefe102ba478d1f">
-        <dex dex="/Users/emmasoriano/Desktop/JUNIOR YEAR/CS301/CurrentHeartsGame3/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_594a1f8ab6a9319b1b5f3ef6153f246369cec413/classes.dex" />
+        sha1="44ec51e9d395a47aab135e5e1b556c0007442156">
+        <dex dex="C:\Users\sarah\AndroidStudioProjects\CurrentHeartsGame\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-v4-18.0.0_03dc47cb629093bafe03a9df0d1fa4f9359bfc82\classes.dex" />
     </item>
 
 </items>
