@@ -28,6 +28,7 @@ import edu.up.cs301.game.infoMsg.NotYourTurnInfo;
 
 public class EasyAI extends GameComputerPlayer implements Animator {
 
+    //variables
     CardDeck currentHand;
     Table table = new Table();
     Suit baseSuit = table.getSuitIndex();
