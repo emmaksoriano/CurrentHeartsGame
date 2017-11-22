@@ -102,16 +102,7 @@ public class HeartsHumanPlayer extends GameHumanPlayer implements Animator {
     // the background color
     private int backgroundColor;
 
-    public boolean checkIfCardinHand(Card card){
-        if((card != null)&&(hand != null)){
-            for(Card c: hand.cards){
-                if(c.equals(card)){
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
+
     /**
      * constructor
      *
@@ -258,6 +249,9 @@ public class HeartsHumanPlayer extends GameHumanPlayer implements Animator {
 
 
         CardDeck myDeck = state.getDeck(0);
+        CardDeck AI1Deck = state.getDeck(1);
+        CardDeck AI2Deck = state.getDeck(2);
+        CardDeck AI3Deck = state.getDeck(3);
 
         if (cardLocation==null&&cardLocationY==null&&humanCards==null) {
             c = state.getDeck(0).peekAtPlayerCard();// currently one of your own cards
@@ -328,10 +322,11 @@ public class HeartsHumanPlayer extends GameHumanPlayer implements Animator {
         float AI1rectTop = 200;
         float AI1rectBottom = 400;
 
+        c = state.getDeck(1).peekAtPlayerCard();// currently one of your own cards
 
 
         RectF aI1cardPile = new RectF(AI1rectLeft, AI1rectTop, AI1rectRight, AI1rectBottom);
-        drawCard(g, aI1cardPile, c);
+        drawCard(g, aI1cardPile, c);//
 
 
         // draw the  second AI's played card
@@ -341,7 +336,7 @@ public class HeartsHumanPlayer extends GameHumanPlayer implements Animator {
         float AI2rectBottom = 400;
 
 
-        c = state.getDeck(0).peekAtPlayerCard();// currently one of your own cards
+        c = state.getDeck(2).peekAtPlayerCard();// currently one of your own cards
 
         RectF aI2cardPile = new RectF(AI2rectLeft, AI2rectTop, AI2rectRight, AI2rectBottom);
         drawCard(g, aI2cardPile, c);
@@ -369,7 +364,7 @@ public class HeartsHumanPlayer extends GameHumanPlayer implements Animator {
         float AI3rectBottom = 300;
 
 
-        c = state.getDeck(0).peekAtPlayerCard();// currently one of your own cards
+        c = state.getDeck(3).peekAtPlayerCard();// currently one of your own cards
 
         RectF aI3cardPile = new RectF(AI3rectLeft, AI3rectTop, AI3rectRight, AI3rectBottom);
         drawCard(g, aI3cardPile, c);
@@ -660,7 +655,16 @@ public class HeartsHumanPlayer extends GameHumanPlayer implements Animator {
     }
 
 
-
+    public boolean checkIfCardinHand(Card card){
+        if((card != null)&&(hand != null)){
+            for(Card c: hand.cards){
+                if(c.equals(card)){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 //Added methods from HeartsPlayer class
 
     public Card[] getMyPass(){
